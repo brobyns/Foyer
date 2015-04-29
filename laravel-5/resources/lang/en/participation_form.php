@@ -15,6 +15,7 @@ return [
     'valnr' => 'Valnr:',
     'shoebrand' => 'Shoe brand:',
     'registerbtn' => 'Sign up',
+    'distance' => 'Distance',
 
-
+    'error_input' => 'There were some problems with your input.'
 ];

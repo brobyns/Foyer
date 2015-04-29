@@ -5,8 +5,19 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 		<div class="col-md-offset-4">
-            <h1 class="title">Inschrijving Foyer jogging</h1>
+            <h1 class="title">{{Lang::get('participation_form.title')}}</h1>
         </div>
+        <br>
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> {{Lang::get('participation_form.error_input')}}<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             {!! Form::open(['url' => 'users', 'class' =>'form-horizontal']) !!}
             <div class="form-group">
                 {!! Form::label('name', Lang::get('participation_form.firstname'), ['class' =>'col-md-4 control-label']) !!}
@@ -33,15 +44,15 @@
                 </div>
             </div>
             <div class="form-group">
-                {!! Form::label('email', Lang::get('participation_form.email'), ['class' =>'col-md-4 control-label']) !!}
+                {!! Form::label('emailAddress', Lang::get('participation_form.email'), ['class' =>'col-md-4 control-label']) !!}
                 <div class="col-md-6">
-                    {!! Form::email('email', null, ['class' => 'form-control']) !!}
+                    {!! Form::email('emailAddress', null, ['class' => 'form-control']) !!}
                 </div>
             </div>
             <div class="form-group">
-                {!! Form::label('dateofbirth', Lang::get('participation_form.dateofbirth'), ['class' =>'col-md-4 control-label']) !!}
+                {!! Form::label('dateOfBirth', Lang::get('participation_form.dateofbirth'), ['class' =>'col-md-4 control-label']) !!}
                 <div class="col-md-6">
-                    {!! Form::text('dateofbirth', null, ['class' => 'form-control']) !!}
+                    {!! Form::text('dateOfBirth', '', ['class' => 'form-control', 'id' => 'datepicker']) !!}
                 </div>
             </div>
             <div class="form-group">
@@ -66,10 +77,17 @@
                 </div>
             </div>
             <div class="form-group">
-                {!! Form::label('dateofbirth', Lang::get('participation_form.dateofbirth'), ['class' =>'col-md-4 control-label']) !!}
-                <div class="col-md-6">
-                    {!! Form::text('date', '', ['class' => 'form-control', 'id' => 'datepicker']) !!}
-                </div>
+            {!! Form::label('distance', Lang::get('participation_form.distance'), ['class' =>'col-md-4 control-label']) !!}
+            <div class="col-md-6">
+                {!! Form::label('1 km', '1 km') !!}
+                {!! Form::radio('distance', '1 km', ['class' => 'form-control']) !!}
+                {!! Form::label('3 km', '3 km') !!}
+                {!! Form::radio('distance', '3 km', ['class' => 'form-control']) !!}
+                {!! Form::label('6 km', '6 km') !!}
+                {!! Form::radio('distance', '6 km', ['class' => 'form-control']) !!}
+                {!! Form::label('9 km', '9 km') !!}
+                {!! Form::radio('distance', '9 km', ['class' => 'form-control']) !!}
+            </div>
             </div>
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">

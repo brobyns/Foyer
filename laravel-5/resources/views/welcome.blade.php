@@ -71,6 +71,7 @@
                     {!! Form::text('date', '', ['class' => 'form-control', 'id' => 'datepicker']) !!}
                 </div>
             </div>
+
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                     {!! Form::submit(Lang::get('participation_form.registerbtn'), ['class' => 'btn btn-primary']) !!}
