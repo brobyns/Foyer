@@ -19,10 +19,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get('/', 'WelcomeController@index');
     Route::get('contact', 'WelcomeController@contact');
     Route::get('participations', 'ParticipationsController@index');
-
-    Route::get('users', 'UsersController@index');
     Route::post('participations', 'ParticipationsController@store');
-    Route::post('users', 'UsersController@store');
+
+//  Route::get('users', 'UsersController@index');
+//  Route::post('users', 'UsersController@store');
+
+    Route::resource('users', 'UsersController');
 
     Route::get('home', 'HomeController@index');
 });

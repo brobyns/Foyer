@@ -73,10 +73,17 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>
+    $(function() {
+      $( "#datepicker" ).datepicker({
+        dateFormat: "dd/mm/yy",
+        changeMonth: true,
+        changeYear: true,
+        maxDate: "-2Y",
+        minDate: "-100Y",
+        yearRange: "-100:-2"
+        });
+      });
+    </script>
 </html>

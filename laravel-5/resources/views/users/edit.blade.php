@@ -18,7 +18,7 @@
                     </ul>
                 </div>
             @endif
-            {!! Form::open(['url' => 'users', 'class' =>'form-horizontal']) !!}
+            {!! Form::model($user, ['method' => 'PATCH', 'action' => ['UsersController@update', $user->id], 'class' =>'form-horizontal']) !!}
             <div class="form-group">
                 {!! Form::label('firstName', Lang::get('participation_form.firstname'), ['class' =>'col-md-4 control-label']) !!}
                 <div class="col-md-6">
@@ -57,10 +57,10 @@
             </div>
             <div class="form-group">
                 {!! Form::label('dateOfBirth', Lang::get('participation_form.dateofbirth'), ['class' =>'col-md-4 control-label']) !!}
-                    <div class="col-md-6">
-                        {!! Form::text('dateOfBirth', null, ['class' => 'form-control', 'id' => 'datepicker']) !!}
-                     </div>
+                <div class="col-md-6">
+                    {!! Form::text('dateOfBirth', null, ['class' => 'form-control', 'id' => 'datepicker']) !!}
                 </div>
+            </div>
             <div class="form-group">
                 {!! Form::label('isMale', Lang::get('participation_form.sex'), ['class' =>'col-md-4 control-label']) !!}
                 <div class="col-md-6">
@@ -111,3 +111,5 @@
     </div>
 </div>
 @stop
+
+

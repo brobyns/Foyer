@@ -24,9 +24,9 @@ class CreateUserRequest extends Request {
 		return [
 			'name' => 'required|min:2',
             'firstname' => 'min:2',
-            'sex' => 'required',
-            'dateOfBirth' => 'required|date',
-            'zipCode' => 'number'
+            'isMale' => 'required',
+            'emailAddress' => 'unique:users',
+            'dateOfBirth' => 'required',
 
 		];
 	}
