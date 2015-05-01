@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration {
             $table->string('emailAddress')->nullable()->unique();
             $table->boolean('isMale');
             $table->string('dateOfBirth');
-            $table->string('birthday');
             $table->string('address')->nullable();
             $table->integer('zipCode')->nullable();
             $table->string('city')->nullable();

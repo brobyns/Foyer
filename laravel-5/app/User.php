@@ -11,4 +11,9 @@ class User extends Model {
         return $this->hasMany('Participation');
     }
 
+    public function setEmailAddressAttribute($email)
+    {
+        $this->attributes['emailAddress'] = trim($email) !== '' ? $email : null;
+    }
+
 }

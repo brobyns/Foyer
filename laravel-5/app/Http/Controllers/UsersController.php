@@ -1,17 +1,19 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller {
 
-    public function index(){
-        return User::all();
+    public function index()
+    {
+        $users = User::all();
+        return view('users/index', compact('users'));
     }
 
-    public function store(CreateUserRequest $request){
+    public function store(UserRequest $request){
         $input = $request->all();
         User::create($input);
         return redirect('users');
@@ -22,9 +24,15 @@ class UsersController extends Controller {
         return view('users/edit', compact('user'));
     }
 
-    public function update($id, Request $request){
+    public function update($id, UserRequest $request){
         $user = User::findOrFail($id);
         $user->update($request->all());
+        return redirect('users');
+    }
+
+    public function destroy($id){
+        $user = User::findOrFail($id);
+        $user->destroy($id);
         return redirect('users');
     }
 

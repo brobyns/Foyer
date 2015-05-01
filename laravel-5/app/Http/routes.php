@@ -17,6 +17,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 {
     /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
     Route::get('/', 'WelcomeController@index');
+    Route::get('/home', 'racesController@index');
     Route::get('contact', 'WelcomeController@contact');
     Route::get('participations', 'ParticipationsController@index');
     Route::post('participations', 'ParticipationsController@store');
@@ -25,8 +26,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 //  Route::post('users', 'UsersController@store');
 
     Route::resource('users', 'UsersController');
-
-    Route::get('home', 'HomeController@index');
+    Route::resource('races', 'RacesController');
 });
 
 Route::controllers([

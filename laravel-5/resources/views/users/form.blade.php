@@ -1,42 +1,32 @@
-@extends('app')
-
-@section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-            <h1 class="text-center text-info">{{Lang::get('participation_form.title')}}</h1>
-            <br>
-            @include('errors.list')
-            {!! Form::open(['url' => 'users', 'class' =>'form-horizontal']) !!}
-            <div class="form-group">
-                {!! Form::label('firstName', Lang::get('participation_form.firstname'), ['class' =>'col-md-4 control-label']) !!}
-                <div class="col-md-6">
-                    {!! Form::text('firstName', null, ['class' => 'form-control']) !!}
-                </div>
-            </div>
-            <div class="form-group">
-                {!! Form::label('name', Lang::get('participation_form.name'), ['class' =>'col-md-4 control-label']) !!}
-                <div class="col-md-6">
-                    {!! Form::text('name', null, ['class' => 'form-control']) !!}
-                </div>
-            </div>
-            <div class="form-group">
-                {!! Form::label('address', Lang::get('participation_form.address'), ['class' =>'col-md-4 control-label']) !!}
-                <div class="col-md-6">
-                    {!! Form::text('address', null, ['class' => 'form-control']) !!}
-                </div>
-            </div>
-            <div class="form-group">
-                {!! Form::label('zipCode', Lang::get('participation_form.zipcode'), ['class' =>'col-md-4 control-label']) !!}
-                <div class="col-md-6">
-                    {!! Form::input('number', 'zipCode', null, ['class' => 'form-control', 'min' => '1000', 'max' => '9999', 'step' => '1']) !!}
-                </div>
-            </div>
-            <div class="form-group">
-                {!! Form::label('city', Lang::get('participation_form.city'), ['class' =>'col-md-4 control-label']) !!}
-                <div class="col-md-6">
-                    {!! Form::text('city', null, ['class' => 'form-control']) !!}
-                </div>
+<div class="form-group">
+    {!! Form::label('firstName', Lang::get('participation_form.firstname'), ['class' =>'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::text('firstName', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+<div class="form-group">
+    {!! Form::label('name', Lang::get('participation_form.name'), ['class' =>'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::text('name', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+<div class="form-group">
+    {!! Form::label('address', Lang::get('participation_form.address'), ['class' =>'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::text('address', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+<div class="form-group">
+    {!! Form::label('zipCode', Lang::get('participation_form.zipcode'), ['class' =>'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::input('number', 'zipCode', null, ['class' => 'form-control', 'min' => '1000', 'max' => '9999', 'step' => '1']) !!}
+    </div>
+</div>
+<div class="form-group">
+    {!! Form::label('city', Lang::get('participation_form.city'), ['class' =>'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::text('city', null, ['class' => 'form-control']) !!}
+    </div>
             </div>
             <div class="form-group">
                 {!! Form::label('emailAddress', Lang::get('participation_form.email'), ['class' =>'col-md-4 control-label']) !!}
@@ -46,10 +36,10 @@
             </div>
             <div class="form-group">
                 {!! Form::label('dateOfBirth', Lang::get('participation_form.dateofbirth'), ['class' =>'col-md-4 control-label']) !!}
-                    <div class="col-md-6">
-                        {!! Form::text('dateOfBirth', null, ['class' => 'form-control', 'id' => 'datepicker']) !!}
-                     </div>
+                <div class="col-md-6">
+                    {!! Form::text('dateOfBirth', null, ['class' => 'form-control', 'id' => 'datepicker']) !!}
                 </div>
+            </div>
             <div class="form-group">
                 {!! Form::label('isMale', Lang::get('participation_form.sex'), ['class' =>'col-md-4 control-label']) !!}
                 <div class="col-md-6">
@@ -95,8 +85,3 @@
                     {!! Form::submit(Lang::get('participation_form.registerbtn'), ['class' => 'btn btn-primary']) !!}
                 </div>
             </div>
-		{!! Form::close() !!}
-		</div>
-    </div>
-</div>
-@stop
