@@ -1,5 +1,6 @@
 <?php
 return [
     'editbtn' => ' Edit',
-    'deletebtn' => ' Delete'
+    'deletebtn' => ' Delete',
+    'savebtn' => ' Save'
 ];

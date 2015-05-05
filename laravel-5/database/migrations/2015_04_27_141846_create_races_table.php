@@ -17,6 +17,7 @@ class CreateRacesTable extends Migration {
 			$table->increments('id');
             $table->string('nameOfTheRace');
             $table->string('firstRaceNumber');
+            $table->integer('distance')->unsigned();
             $table->timestamps();
 		});
 	}

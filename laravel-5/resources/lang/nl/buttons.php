@@ -1,5 +1,6 @@
 <?php
 return [
     'editbtn' => ' Bewerk',
-    'deletebtn' => ' Verwijder'
+    'deletebtn' => ' Verwijder',
+    'savebtn' => ' Opslaan'
 ];

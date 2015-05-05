@@ -2,5 +2,6 @@
 return [
     'home' => 'Home',
     'users' => 'Users',
-    'races' => 'Races'
+    'races' => 'Races',
+    'contact' => 'Contact'
 ];

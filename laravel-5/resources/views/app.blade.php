@@ -35,9 +35,13 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="{{ url('/') }}">{{Lang::get('menu.home')}}</a></li>
+				@if (Auth::guest())
+				    <li><a href="{{ url('/') }}">{{Lang::get('menu.home')}}</a></li>
+				@else
 					<li><a href="{{ url('users') }}">{{Lang::get('menu.users')}}</a></li>
 					<li><a href="{{ url('races') }}">{{Lang::get('menu.races')}}</a></li>
+				@endif
+					<li><a href="{{ url('contact') }}">{{Lang::get('menu.contact')}}</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right f32">

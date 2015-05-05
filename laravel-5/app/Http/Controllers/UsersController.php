@@ -3,9 +3,15 @@
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Participation;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class UsersController extends Controller {
+
+    public function __Construct(){
+        $this->middleware('auth',['except' => 'store']);
+    }
 
     public function index()
     {
@@ -13,10 +19,19 @@ class UsersController extends Controller {
         return view('users/index', compact('users'));
     }
 
+    public function create()
+    {
+        return view('users/create');
+    }
+
     public function store(UserRequest $request){
         $input = $request->all();
         User::create($input);
-        return redirect('users');
+        $user = User::find(20);
+        $participation = new Participation([1,2015,$user->id, 1,1, Carbon::now(),0,0,0]);
+        $user->participations()->save($participation);
+
+        //return redirect('users');
     }
 
     public function edit($id){

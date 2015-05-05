@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 
 class RacesController extends Controller {
 
+    public function __Construct(){
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $races = Race::all();

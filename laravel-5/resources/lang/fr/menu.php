@@ -2,5 +2,6 @@
 return [
     'home' => 'Accueil',
     'users' => 'Utilisateurs',
-    'races' => 'Courses'
+    'races' => 'Courses',
+    'contact' => 'Contact'
 ];
