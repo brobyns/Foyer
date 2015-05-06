@@ -2,5 +2,6 @@
 return [
     'editbtn' => ' Bewerk',
     'deletebtn' => ' Verwijder',
-    'savebtn' => ' Opslaan'
+    'savebtn' => ' Opslaan',
+    'showparticipationsbtn' => ' Deelnames'
 ];

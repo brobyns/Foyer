@@ -14,14 +14,15 @@ class CreateParticipationsTable extends Migration {
     {
         Schema::create('participations', function(Blueprint $table)
         {
-            $table->integer('races_id')->unsigned()->index();
-            $table->foreign('races_id')->references('id')->on('races')
+            $table->integer('race_id')->unsigned()->index();
+            $table->foreign('race_id')->references('id')->on('races')
                 ->onDelete('cascade');
 
             $table->integer('year');
 
-            $table->integer('users_id')->unsigned()->index();
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
 
             $table->integer('raceNumber');
             $table->unique('raceNumber');
@@ -32,7 +33,7 @@ class CreateParticipationsTable extends Migration {
             $table->boolean('signedUpOnline');
             $table->timestamps();
 
-            $table->primary(array('users_id', 'races_id', 'year'));
+            $table->primary(array('user_id', /*'race_id',*/ 'year'));
 
         });
     }

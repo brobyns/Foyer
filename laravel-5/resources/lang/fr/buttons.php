@@ -2,5 +2,6 @@
 return [
     'editbtn' => ' Editer',
     'deletebtn' => ' Supprimer',
-    'savebtn' => ' Sauvegarder'
+    'savebtn' => ' Sauvegarder',
+    'showparticipationsbtn' => ' Participations'
 ];

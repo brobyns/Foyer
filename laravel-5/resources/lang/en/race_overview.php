@@ -6,5 +6,7 @@ return [
     'savebtn' => ' Save',
     'createbtn' => ' Create race',
     'cancelbtn' => ' Cancel',
+    'numberparticipants' => 'Number of participants',
+    'participantsbtn' => ' Participants',
     'error_input' => 'There were some problems with your input.'
 ];

@@ -8,7 +8,7 @@ class User extends Model {
                                 'address','zipCode','city','valNr','shoeBrand');
 
     public function participations(){
-        return $this->hasMany('Participation')->withTimestamps();
+        return $this->hasMany('App\Participation');
     }
 
     public function setEmailAddressAttribute($email)

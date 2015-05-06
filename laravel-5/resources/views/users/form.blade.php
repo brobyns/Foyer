@@ -70,15 +70,12 @@
             <div class="form-group">
             {!! Form::label('distance', Lang::get('participation_form.distance'), ['class' =>'col-md-4 control-label']) !!}
             <div class="col-md-6">
-                {!! Form::label('1 km', '1 km') !!}
-                {!! Form::radio('distance', '1 km', ['class' => 'form-control']) !!}
-                {!! Form::label('3 km', '3 km') !!}
-                {!! Form::radio('distance', '3 km', ['class' => 'form-control']) !!}
-                {!! Form::label('6 km', '6 km') !!}
-                {!! Form::radio('distance', '6 km', ['class' => 'form-control']) !!}
-                {!! Form::label('9 km', '9 km') !!}
-                {!! Form::radio('distance', '9 km', ['class' => 'form-control']) !!}
+                @foreach($races as $race)
+                    {!! Form::label($race->distance . 'km',$race->distance . ' km') !!}
+                    {!! Form::radio('distance', $race->id, ['class' => 'form-control']) !!}
+                @endforeach
             </div>
+
             </div>
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">

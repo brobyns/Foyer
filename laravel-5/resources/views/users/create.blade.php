@@ -10,7 +10,7 @@
                 <br>
                 @include('errors.list')
                 {!! Form::open(['method' => 'POST', 'action' => ['UsersController@store'], 'class' =>'form-horizontal']) !!}
-                @include('users.form',['submitBtnText' => Lang::get('race_overview.createbtn'), 'iconBtn' => 'ok'])
+                @include('users.form',['submitBtnText' => Lang::get('race_overview.createbtn'), 'iconBtn' => 'ok', 'races' => $races])
                 {!! Form::close() !!}
             </div>
         </div>

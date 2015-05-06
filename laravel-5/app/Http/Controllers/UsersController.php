@@ -3,9 +3,10 @@
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Race;
 use App\Participation;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Input;
 
 class UsersController extends Controller {
 
@@ -21,22 +22,26 @@ class UsersController extends Controller {
 
     public function create()
     {
-        return view('users/create');
+        $races = Race::all();
+        return view('users/create', compact('races'));
     }
 
     public function store(UserRequest $request){
         $input = $request->all();
-        User::create($input);
-        $user = User::find(20);
-        $participation = new Participation([1,2015,$user->id, 1,1, Carbon::now(),0,0,0]);
+        $user = User::create($input);
+        $race = Race::find(Input::get('distance'));
+        $participation = new Participation(['race_id'=> $race->id,'year' => 2015,'user_id' => $user->id, 'raceNumber' =>$user->id,
+                                            'chipNumber' => 0, "time"=>Carbon::now(),'paid' => 1,
+                                            'wiredTransfer' => 1, 'signedUpOnline' => 1]);
         $user->participations()->save($participation);
 
-        //return redirect('users');
+        return redirect('users');
     }
 
     public function edit($id){
         $user = User::findOrFail($id);
-        return view('users/edit', compact('user'));
+        $races = Race::all();
+        return view('users/edit', compact('user', 'races'));
     }
 
     public function update($id, UserRequest $request){

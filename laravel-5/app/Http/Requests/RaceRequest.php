@@ -24,6 +24,7 @@ class RaceRequest extends Request {
         return [
             'nameOfTheRace' => 'required|min:2',
             'firstRaceNumber' => 'min:2',
+            'distance' => 'required|numeric'
         ];
     }
 

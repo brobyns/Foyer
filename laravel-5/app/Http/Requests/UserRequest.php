@@ -29,7 +29,7 @@ class UserRequest extends Request {
         }
 		$rules  = array(
 			'name' => 'required|min:2',
-            'firstname' => 'required|min:2',
+            'firstName' => 'required|min:2',
             'isMale' => 'required',
             'emailAddress' => $email_rule,
             'dateOfBirth' => 'required');

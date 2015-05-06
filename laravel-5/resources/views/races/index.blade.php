@@ -23,6 +23,8 @@
                     <tr>
                         <td>{{Lang::get('race_overview.nameOfTheRace')}}</td>
                         <td>{{Lang::get('race_overview.firstRaceNumber')}}</td>
+                        <td>{{Lang::get('participations.distance')}}</td>
+                        <td>{{Lang::get('race_overview.numberparticipants')}}</td>
                         <td></td>
                     </tr>
                     </thead>
@@ -31,6 +33,8 @@
                         <tr>
                             <td>{{ $race->nameOfTheRace }}</td>
                             <td>{{ $race->firstRaceNumber }}</td>
+                            <td>{{ $race->distance }}</td>
+                            <td>{{ count($race->participations) }}</td>
                             <td>
                                 <a href="{{url('races/'.$race->id).'/edit'}}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-wrench"></span>{{Lang::get('buttons.editbtn')}}</a>
 

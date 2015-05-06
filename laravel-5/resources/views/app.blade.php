@@ -91,5 +91,17 @@
         yearRange: "-100:-2"
         });
       });
+
+      $(function () {
+                  $("#firstName").autocomplete({
+                      source: "search/autocomplete",
+                      minLength: 2,
+                      select: function (event, ui) {
+                          //$('#firstName').val(ui.item.value);
+                          var id = ui.item.id;
+                          window.location =  id + '/edit';
+                      }
+                  });
+              });
     </script>
 </html>

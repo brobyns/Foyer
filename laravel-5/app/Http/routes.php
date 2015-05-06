@@ -17,11 +17,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
     /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
     Route::get('/', 'WelcomeController@index');
     Route::get('/contact', 'WelcomeController@contact');
-    Route::get('participations', 'ParticipationsController@index');
-    Route::post('participations', 'ParticipationsController@store');
 
+    Route::get('/participations/{id}/show', 'ParticipationsController@show');
     Route::resource('users', 'UsersController');
     Route::resource('races', 'RacesController');
+    Route::get('users/search/autocomplete', 'SearchController@autocomplete');
 
 });
 
