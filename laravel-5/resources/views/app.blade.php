@@ -71,7 +71,6 @@
 			</div>
 		</div>
 	</nav>
-
 	@yield('content')
 
 	<!-- Scripts -->
@@ -103,5 +102,7 @@
                       }
                   });
               });
+
+    $('div.alert').not('alert-important').delay(2500).slideUp(300);
     </script>
 </html>

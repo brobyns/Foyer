@@ -148,6 +148,8 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+        'Laracasts\Flash\FlashServiceProvider'
+
 	],
 
 	/*
@@ -198,7 +200,7 @@ return [
         'Form'      => 'Illuminate\Html\FormFacade',
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'LaravelLocalization'   => 'Mcamara\LaravelLocalization\Facades\LaravelLocalization',
-
+        'Flash'     => 'Laracasts\Flash\Flash'
 	],
 
 ];

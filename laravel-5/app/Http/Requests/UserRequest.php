@@ -33,6 +33,7 @@ class UserRequest extends Request {
             'isMale' => 'required',
             'emailAddress' => $email_rule,
             'dateOfBirth' => 'required');
+
         return $rules;
 	}
 

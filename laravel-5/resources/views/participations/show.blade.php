@@ -52,7 +52,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                <a href="{{url('users/create')}}" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span>{{Lang::get('user_overview.createbtn')}}</a>
+                <a href="{{url('/users')}}" class="btn btn-lg btn-primary"></span>{{Lang::get('buttons.useroverviewbtn')}}</a>
             </div>
         </div>
     </div>

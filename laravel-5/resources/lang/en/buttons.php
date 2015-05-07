@@ -1,7 +1,11 @@
 <?php
 return [
+    'createbtn' => ' Create',
     'editbtn' => ' Edit',
     'deletebtn' => ' Delete',
     'savebtn' => ' Save',
-    'showparticipationsbtn' => ' Participations'
+    'cancelbtn'=> ' Cancel',
+    'showparticipationsbtn' => ' Participations',
+    'resultsbtn' => ' Results',
+    'useroverviewbtn' => ' Back to user overview'
 ];

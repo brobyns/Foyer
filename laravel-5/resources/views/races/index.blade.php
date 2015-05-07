@@ -4,6 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
+                @include('flash::message')
                 <div class="col-md-offset-4">
                     <h1 class="title">{{Lang::get('race_overview.title')}}</h1>
                 </div>
@@ -21,9 +22,9 @@
                 <table class="table table-striped table-bordered table-responsive">
                     <thead>
                     <tr>
-                        <td>{{Lang::get('race_overview.nameOfTheRace')}}</td>
-                        <td>{{Lang::get('race_overview.firstRaceNumber')}}</td>
-                        <td>{{Lang::get('participations.distance')}}</td>
+                        <td>{{Lang::get('races.nameOfTheRace')}}</td>
+                        <td>{{Lang::get('races.firstRaceNumber')}}</td>
+                        <td>{{Lang::get('races.distance')}}</td>
                         <td>{{Lang::get('race_overview.numberparticipants')}}</td>
                         <td></td>
                     </tr>
@@ -41,6 +42,7 @@
                                 {!! Form::open(['action' => ['RacesController@destroy', $race->id], 'method' => 'delete', 'style' => 'display:inline']) !!}
                                     {!! Form::button('<span class="glyphicon glyphicon-trash"></span>' . Lang::get('buttons.deletebtn'), ['class'=>'btn btn-danger btn-sm', 'type'=>'submit']) !!}
                                 {!! Form::close() !!}
+                                <a href="{{url('results/'.$race->id).'/show'}}" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-stats"></span>{{Lang::get('buttons.resultsbtn')}}</a>
                             </td>
 
                          </tr>

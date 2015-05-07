@@ -18,9 +18,11 @@ class ParticipationsController extends Controller {
         return view('/participations/show', compact('user', 'participations'));
     }
 
+    public function edit($id){
 
+    }
 
     public function store(Request $request){
-        return $request->input('name');
+
     }
 }

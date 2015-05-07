@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Requests\RaceRequest;
 use App\Race;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Lang;
 
 class RacesController extends Controller {
 
@@ -24,7 +25,9 @@ class RacesController extends Controller {
 
     public function store(RaceRequest $request){
         $input = $request->all();
-        Race::create($input);
+        $race = Race::create($input);
+        $message = str_replace(':name', $race->nameOfTheRace, Lang::get('messages.create_race'));
+        flash()->success($message);
         return redirect('races');
     }
 
@@ -36,12 +39,15 @@ class RacesController extends Controller {
     public function update($id, RaceRequest $request){
         $race = Race::findOrFail($id);
         $race->update($request->all());
+        flash()->success(Lang::get('messages.update_race'));
         return redirect('races');
     }
 
     public function destroy($id){
         $race = Race::findOrFail($id);
         $race->destroy($id);
+        $message = str_replace(':name', $race->nameOfTheRace, Lang::get('messages.delete_race'));
+        flash()->success($message);
         return redirect('races');
     }
 

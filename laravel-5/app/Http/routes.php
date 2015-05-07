@@ -19,6 +19,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
     Route::get('/contact', 'WelcomeController@contact');
 
     Route::get('/participations/{id}/show', 'ParticipationsController@show');
+    Route::get('/results/{id}/show', 'ResultsController@show');
     Route::resource('users', 'UsersController');
     Route::resource('races', 'RacesController');
     Route::get('users/search/autocomplete', 'SearchController@autocomplete');

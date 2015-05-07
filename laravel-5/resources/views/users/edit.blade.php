@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 		<div class="col-md-offset-4">
-            <h1 class="title">{{Lang::get('participation_form.title')}}</h1>
+            <h1 class="title">{{Lang::get('user_edit.title')}}</h1>
         </div>
         <br>
             @if (count($errors) > 0)
@@ -19,7 +19,7 @@
                 </div>
             @endif
             {!! Form::model($user, ['method' => 'PATCH', 'action' => ['UsersController@update', $user->id], 'class' =>'form-horizontal']) !!}
-            @include('users.form')
+            @include('users.form',['submitBtnText' => Lang::get('buttons.savebtn'), 'iconBtn' => 'ok', 'races' => $races, 'user' => $user])
 		{!! Form::close() !!}
 		</div>
     </div>

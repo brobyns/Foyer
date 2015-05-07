@@ -16,7 +16,8 @@ class CreateParticipationsTable extends Migration {
         {
             $table->integer('race_id')->unsigned()->index();
             $table->foreign('race_id')->references('id')->on('races')
-                ->onDelete('cascade');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             $table->integer('year');
 

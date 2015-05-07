@@ -4,6 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
+                @include('flash::message')
                 <div class="col-md-offset-4">
                     <h1 class="title">{{Lang::get('user_overview.title')}}</h1>
                 </div>

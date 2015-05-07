@@ -44,9 +44,9 @@
                 {!! Form::label('isMale', Lang::get('participation_form.sex'), ['class' =>'col-md-4 control-label']) !!}
                 <div class="col-md-6">
                     {!! Form::label('male', Lang::get('participation_form.male')) !!}
-                    {!! Form::radio('isMale', 1, ['class' => 'form-control']) !!}
+                    {!! Form::radio('isMale', 1) !!}
                     {!! Form::label('female', Lang::get('participation_form.female')) !!}
-                    {!! Form::radio('isMale', 0, ['class' => 'form-control']) !!}
+                    {!! Form::radio('isMale', 0) !!}
                 </div>
             </div>
             <div class="form-group">
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="form-group">
-                {!! Form::label('shoeBrand', Lang::get('participation_form.shoebrand'), ['class' =>'col-md-4 control-label']) !!}
+                {!! Form::label('shoe Brand', Lang::get('participation_form.shoebrand'), ['class' =>'col-md-4 control-label']) !!}
                 <div class="col-md-6">
                     {!! Form::text('shoeBrand', null, ['class' => 'form-control']) !!}
                 </div>
@@ -72,13 +72,22 @@
             <div class="col-md-6">
                 @foreach($races as $race)
                     {!! Form::label($race->distance . 'km',$race->distance . ' km') !!}
-                    {!! Form::radio('distance', $race->id, ['class' => 'form-control']) !!}
+                    @if(!$user || $user->participations->isEmpty())
+                        {!! Form::radio('distance', $race->id, true) !!}
+                    @else
+                        @if($race->distance == $user->participations->last()->race->distance)
+                            {!! Form::radio('distance', $race->id, true) !!}
+                        @else
+                             {!! Form::radio('distance', $race->id, false) !!}
+                        @endif
+                    @endif
                 @endforeach
             </div>
 
             </div>
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
-                    {!! Form::submit(Lang::get('participation_form.registerbtn'), ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit($submitBtnText, ['class' => 'btn btn-primary']) !!}
+                    <a href="{{url('users')}}" class="btn btn-primary btn-danger"><span class="glyphicon glyphicon-ban-circle"></span> {{Lang::get('buttons.cancelbtn')}}</a>
                 </div>
             </div>
