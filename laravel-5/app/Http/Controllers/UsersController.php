@@ -8,6 +8,7 @@ use App\Participation;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller {
 
@@ -35,7 +36,7 @@ class UsersController extends Controller {
         $user = User::create($input);
         $race = Race::find(Input::get('distance'));
         if($race){
-            $participation = new Participation(['race_id'=> $race->id,'year' => 2015,'user_id' => $user->id,
+            $participation = new Participation(['race_id'=> $race->id,'year' => Carbon::now()->year,'user_id' => $user->id,
                                                 'raceNumber' =>$user->id, 'chipNumber' => 0,
                                                 "time"=>Carbon::now(),'paid' => 1,
                                                 'wiredTransfer' => 1, 'signedUpOnline' => 1]);
@@ -56,7 +57,10 @@ class UsersController extends Controller {
     public function update($id, UserRequest $request){
         $user = User::findOrFail($id);
         $user->update($request->all());
-
+        $participation = Participation::where('user_id', $user->id)->get()->first();
+        $participation->update(['race_id' => $request->input('distance'), 'year' => Carbon::now()->year,
+                                'user_id' => $user->id,'raceNumber' => $user->id, 'chipNumber' => 0,
+                                "time"=>Carbon::now(),'paid' => 1, 'wiredTransfer' => 1, 'signedUpOnline' => 1]);
         flash()->success(Lang::get('messages.update_user'));
         return redirect('users');
     }

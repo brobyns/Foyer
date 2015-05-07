@@ -79,6 +79,7 @@
 </body>
  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  {!! Html::script('/javascript/jquery.tablesorter.js') !!}
   <script>
     $(function() {
       $( "#datepicker" ).datepicker({
@@ -104,5 +105,9 @@
               });
 
     $('div.alert').not('alert-important').delay(2500).slideUp(300);
+    $(document).ready(function()
+        {$("#myTable").tablesorter();
+        }
+    );
     </script>
 </html>

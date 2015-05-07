@@ -18,15 +18,15 @@
                         </ul>
                     </div>
                 @endif
-                <table class="table table-striped table-bordered table-responsive">
+                <table id="myTable" class="table table-striped table-bordered table-responsive tablesorter">
                     <thead>
                     <tr>
-                        <td>{{Lang::get('participations.year')}}</td>
-                        <td>{{Lang::get('participations.racenumber')}}</td>
-                        <td>{{Lang::get('participations.chipnumber')}}</td>
-                        <td>{{Lang::get('participations.time')}}</td>
-                        <td>{{Lang::get('participations.distance')}}</td>
-                        <td>{{Lang::get('participation_show.race')}}</td>
+                        <th>{{Lang::get('participations.year')}}</th>
+                        <th>{{Lang::get('participations.racenumber')}}</th>
+                        <th>{{Lang::get('participations.chipnumber')}}</th>
+                        <th>{{Lang::get('participations.time')}}</th>
+                        <th>{{Lang::get('participations.distance')}}</th>
+                        <th>{{Lang::get('participation_show.race')}}</th>
                         <td></td>
                     </tr>
                     </thead>

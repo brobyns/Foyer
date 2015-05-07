@@ -23,6 +23,13 @@ class ParticipationsController extends Controller {
     }
 
     public function store(Request $request){
-
+        $race = Race::find(Input::get('distance'));
+        if($race){
+            $participation = new Participation(['race_id'=> $race->id,'year' => $race->year,'user_id' => $user->id,
+                'raceNumber' =>$user->id, 'chipNumber' => 0,
+                "time"=>Carbon::now(),'paid' => 1,
+                'wiredTransfer' => 1, 'signedUpOnline' => 1]);
+            $user->participations()->save($participation);
+        }
     }
 }

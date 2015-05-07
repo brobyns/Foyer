@@ -19,13 +19,13 @@
                         </ul>
                     </div>
                 @endif
-                <table class="table table-striped table-bordered table-responsive">
+                <table id="myTable" class="table table-striped table-bordered table-responsive tablesorter">
                     <thead>
                     <tr>
-                        <td>{{Lang::get('races.nameOfTheRace')}}</td>
-                        <td>{{Lang::get('races.firstRaceNumber')}}</td>
-                        <td>{{Lang::get('races.distance')}}</td>
-                        <td>{{Lang::get('race_overview.numberparticipants')}}</td>
+                        <th>{{Lang::get('races.nameOfTheRace')}}</th>
+                        <th>{{Lang::get('races.firstRaceNumber')}}</th>
+                        <th>{{Lang::get('races.distance')}}</th>
+                        <th>{{Lang::get('race_overview.numberparticipants')}}</th>
                         <td></td>
                     </tr>
                     </thead>

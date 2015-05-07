@@ -34,7 +34,7 @@ class CreateParticipationsTable extends Migration {
             $table->boolean('signedUpOnline');
             $table->timestamps();
 
-            $table->primary(array('user_id', /*'race_id',*/ 'year'));
+            $table->primary(array('user_id', 'race_id', 'year'));
 
         });
     }

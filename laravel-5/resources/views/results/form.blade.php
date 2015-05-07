@@ -1,12 +1,12 @@
- <table id="myTable" class="table table-striped table-bordered table-responsive">
+ <table id="myTable" class="table table-striped table-bordered table-responsive tablesorter">
     <thead>
         <tr>
-            <td>{{Lang::get('users.firstname')}}</td>
-            <td>{{Lang::get('users.name')}}</td>
-            <td>{{Lang::get('users.dateofbirth')}}</td>
-            <td>{{Lang::get('participations.time')}}</td>
-            <td>{{Lang::get('participations.year')}}</td>
-        </tr>
+            <th class="header">{{Lang::get('users.firstname')}}</th>
+            <th class="header">{{Lang::get('users.name')}}</th>
+            <th>{{Lang::get('users.dateofbirth')}}</th>
+            <th>{{Lang::get('participations.time')}}</th>
+            <th>{{Lang::get('participations.year')}}</th>
+         </tr>
     </thead>
     <tbody>
         @foreach($users as $user)

@@ -19,14 +19,14 @@
                         </ul>
                     </div>
                 @endif
-                <table class="table table-striped table-bordered table-responsive">
+                <table id="myTable" class="table table-striped table-bordered table-responsive tablesorter">
                     <thead>
                     <tr>
-                        <td>{{Lang::get('users.firstname')}}</td>
-                        <td>{{Lang::get('users.name')}}</td>
-                        <td>{{Lang::get('users.email')}}</td>
-                        <td>{{Lang::get('users.address')}}</td>
-                        <td>{{Lang::get('users.dateofbirth')}}</td>
+                        <th>{{Lang::get('users.firstname')}}</th>
+                        <th>{{Lang::get('users.name')}}</th>
+                        <th>{{Lang::get('users.email')}}</th>
+                        <th>{{Lang::get('users.address')}}</th>
+                        <th>{{Lang::get('users.dateofbirth')}}</th>
                         <td></td>
                     </tr>
                     </thead>
