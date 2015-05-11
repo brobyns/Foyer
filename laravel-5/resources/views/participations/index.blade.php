@@ -4,10 +4,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                    <h1 class="title">{{Lang::get('participation_show.title') . $user->firstName . ' ' . $user->name}}</h1>
+                    <h1 class="title">{{Lang::get('participation_overview.title')}}</h1>
                 <br>
                 <div class="col-md-offset-10">
-                    <a href="{{url('csv/export/participations/'.$user->id)}}" class="btn btn-sm btn-dark"><span class="glyphicon glyphicon-floppy-save"></span> {{Lang::get('buttons.exportbtn')}}</a>
+                    <a href="{{url('csv/export/participations')}}" class="btn btn-sm btn-dark"><span class="glyphicon glyphicon-floppy-save"></span> {{Lang::get('buttons.exportbtn')}}</a>
                 </div>
                 <br>
                 @include('participations.table', ['participations' => $participations])

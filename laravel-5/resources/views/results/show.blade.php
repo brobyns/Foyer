@@ -1,5 +1,6 @@
 @extends('...app')
 
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -8,7 +9,11 @@
                     <h1 class="title">{{Lang::get('results_show.title') . $race->nameOfTheRace }}</h1>
                 </div>
                 <br>
-               @include('results.form', ['users' => $users])
+                <div class="col-md-offset-10">
+                    <a href="{{url('/csv/export/results/'.$race->id)}}" class="btn btn-sm btn-dark"><span class="glyphicon glyphicon-floppy-save"></span> {{Lang::get('buttons.exportbtn')}}</a>
+                 </div>
+                 <br>
+               @include('participations.table', ['users' => $users, 'race' => $race])
             </div>
         </div>
     </div>

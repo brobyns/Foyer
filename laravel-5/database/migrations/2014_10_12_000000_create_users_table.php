@@ -16,9 +16,9 @@ class CreateUsersTable extends Migration {
         {
             $table->increments('id');
             $table->string('name');
-            $table->string('firstName');
+            $table->string('firstName')->nullable();
             $table->string('clubD')->nullable();
-            $table->string('emailAddress')->nullable()->unique();
+            $table->string('emailAddress')->nullable();
             $table->boolean('isMale');
             $table->string('dateOfBirth');
             $table->string('address')->nullable();

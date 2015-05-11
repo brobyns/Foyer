@@ -1,0 +1,4 @@
+<?php
+[
+    'title' => 'Overview participations'
+];

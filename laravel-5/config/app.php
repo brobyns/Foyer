@@ -138,6 +138,7 @@ return [
         'Illuminate\Html\HtmlServiceProvider',
 
         'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
+        'Maatwebsite\Excel\ExcelServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -200,7 +201,8 @@ return [
         'Form'      => 'Illuminate\Html\FormFacade',
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'LaravelLocalization'   => 'Mcamara\LaravelLocalization\Facades\LaravelLocalization',
-        'Flash'     => 'Laracasts\Flash\Flash'
+        'Flash'     => 'Laracasts\Flash\Flash',
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 	],
 
 ];

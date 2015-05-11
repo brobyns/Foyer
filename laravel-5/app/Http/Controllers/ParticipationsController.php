@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class ParticipationsController extends Controller {
 
 	public function index(){
-        return Participation::all();
+        $participations = Participation::all();
+        return view('participations/index', compact('participations'));
     }
 
     public function show($id){

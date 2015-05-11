@@ -7,5 +7,7 @@ return [
     'cancelbtn' => ' Annuler',
     'showparticipationsbtn' => ' Participations',
     'resultsbtn' => ' Resultats',
-    'useroverviewbtn' => ' Back to user overview'
+    'importbtn' => ' Importer',
+    'useroverviewbtn' => ' retourner vers l\'aperçu',
+    'exportbtn' => ' Exporter au format CSV'
 ];

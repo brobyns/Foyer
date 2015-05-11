@@ -19,11 +19,17 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
     Route::get('/contact', 'WelcomeController@contact');
 
     Route::get('/participations/{id}/show', 'ParticipationsController@show');
+    Route::get('/participations', 'ParticipationsController@index');
     Route::get('/results/{id}/show', 'ResultsController@show');
     Route::resource('users', 'UsersController');
     Route::resource('races', 'RacesController');
     Route::get('users/search/autocomplete', 'SearchController@autocomplete');
 
+    Route::get('csv/import', 'CsvController@index');
+    Route::post('csv/import', 'CsvController@import');
+    Route::get('csv/export/results/{id}', 'CsvController@exportResults');
+    Route::get('csv/export/participations/{id}', 'CsvController@exportParticipations');
+    Route::get('csv/export/{table}', 'CsvController@export');
 });
 
 Route::controllers([

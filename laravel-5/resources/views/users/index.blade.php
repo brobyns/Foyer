@@ -19,6 +19,10 @@
                         </ul>
                     </div>
                 @endif
+                <div class="col-md-offset-10">
+                    <a href="{{url('csv/export/users')}}" class="btn btn-sm btn-dark"><span class="glyphicon glyphicon-floppy-save"></span> {{Lang::get('buttons.exportbtn')}}</a>
+                </div>
+                <br>
                 <table id="myTable" class="table table-striped table-bordered table-responsive tablesorter">
                     <thead>
                     <tr>
@@ -26,7 +30,7 @@
                         <th>{{Lang::get('users.name')}}</th>
                         <th>{{Lang::get('users.email')}}</th>
                         <th>{{Lang::get('users.address')}}</th>
-                        <th>{{Lang::get('users.dateofbirth')}}</th>
+                        <th class="sorter-ddmmyy">{{Lang::get('users.dateofbirth')}}</th>
                         <td></td>
                     </tr>
                     </thead>
@@ -37,7 +41,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->emailAddress }}</td>
                             <td>{{ $user->address . ' ' . $user->zipCode . ' ' . $user->city}}</td>
-                            <td>{{$user->dateOfBirth . ' (' . Carbon\Carbon::createFromFormat('d/m/Y', $user->dateOfBirth)->diffInYears(Carbon\Carbon::now()) . ')'}}</td>
+                            <td>{{Carbon\Carbon::createFromFormat('d/m/Y',$user->dateOfBirth)->format('d/m/Y') . ' (' . Carbon\Carbon::createFromFormat('d/m/Y', $user->dateOfBirth)->diffInYears(Carbon\Carbon::now()) . ')'}}</td>
                             <td>
                                 <div class="form-group">
                                     <a href="{{url('users/'.$user->id).'/edit'}}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-wrench"></span>{{Lang::get('buttons.editbtn')}}</a>

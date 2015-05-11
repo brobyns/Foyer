@@ -19,6 +19,10 @@
                         </ul>
                     </div>
                 @endif
+                <div class="col-md-offset-10">
+                    <a href="{{url('csv/export/races')}}" class="btn btn-sm btn-dark"><span class="glyphicon glyphicon-floppy-save"></span> {{Lang::get('buttons.exportbtn')}}</a>
+                </div>
+                <br>
                 <table id="myTable" class="table table-striped table-bordered table-responsive tablesorter">
                     <thead>
                     <tr>

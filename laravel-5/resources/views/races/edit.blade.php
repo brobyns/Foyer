@@ -8,16 +8,7 @@
                     <h1 class="title">{{Lang::get('race_edit.title')}}</h1>
                 </div>
                 <br>
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> {{Lang::get('participation_form.error_input')}}<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                @include('errors.list')
                 {!! Form::model($race, ['method' => 'PATCH', 'action' => ['RacesController@update', $race->id], 'class' =>'form-horizontal']) !!}
                 @include('races.form',['submitBtnText' => Lang::get('buttons.savebtn'), 'iconBtn' => 'floppy-disk'])
                 {!! Form::close() !!}
