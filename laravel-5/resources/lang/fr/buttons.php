@@ -8,6 +8,7 @@ return [
     'showparticipationsbtn' => ' Participations',
     'resultsbtn' => ' Resultats',
     'importbtn' => ' Importer',
-    'useroverviewbtn' => ' retourner vers l\'aperçu',
+    'useroverviewbtn' => ' Retourner vers l\'aperçu',
+    'raceoverviewbtn' => ' Retourner vers l\'aperçu',
     'exportbtn' => ' Exporter au format CSV'
 ];

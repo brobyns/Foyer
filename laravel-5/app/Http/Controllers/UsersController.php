@@ -18,7 +18,7 @@ class UsersController extends Controller {
 
     public function index()
     {
-        $users = User::all();
+        $users = User::all()->sortBy('name');
         return view('users/index', compact('users'));
     }
 
@@ -71,6 +71,33 @@ class UsersController extends Controller {
         $message = str_replace(':name', $user->firstName . ' '. $user->name, Lang::get('messages.delete_user'));
         flash()->success($message);
         return redirect('users');
+    }
+
+    public function filter(Request $request){
+        if($request->ajax()) {
+            $years = $request->input('years');
+            $distances = $request->input('distances');
+            $query = null;
+            if($distances){
+                $query = Participation::join('races', 'participations.race_id', '=', 'races.id')
+                    ->whereIn('distance', $distances);
+            }
+            if($years){
+                if($query){
+                    $query = $query->whereIn('year', $years);
+                }else {
+                    $query = Participation::whereIn('year', $years);
+                }
+            }
+            if($query){
+                $participations = $query->get();
+            }else{
+                $participations = Participation::all();
+            }
+            $years = Participation::select('year')->groupBy('year')->get()->fetch('year');
+            $distances = Race::select('distance')->groupBy('distance')->get()->fetch('distance');
+            return view('participations.table', compact('participations', 'years', 'distances'));
+        }
     }
 
 }

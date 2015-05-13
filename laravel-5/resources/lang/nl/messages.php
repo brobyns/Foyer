@@ -7,5 +7,8 @@ return [
 
     'create_race' => 'Wedstrijd :name werd met succes aangemaakt!',
     'update_race' => 'Wedstrijd werd met succes gewijzigd!',
-    'delete_race' => 'Wedstrijd :name werd met succes verwijderd'
+    'delete_race' => 'Wedstrijd :name werd met succes verwijderd',
+
+    'import' => 'Bestand :filename werd met succes geïmporteerd!',
+    'no_file' => 'Er is geen bestand geselecteerd'
 ];

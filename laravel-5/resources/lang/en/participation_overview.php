@@ -1,4 +1,5 @@
 <?php
-[
-    'title' => 'Overview participations'
+return [
+    'title' => 'Overview participations',
+    'filteroptions' => 'Filter options',
 ];

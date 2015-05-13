@@ -9,5 +9,6 @@ return [
     'resultsbtn' => ' Results',
     'importbtn' => ' Import',
     'useroverviewbtn' => ' Back to user overview',
+    'raceoverviewbtn' => ' Back to race overview',
     'exportbtn' => ' Export to csv'
 ];

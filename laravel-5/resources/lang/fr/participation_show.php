@@ -1,5 +1,6 @@
 <?php
 return [
-    'title' => 'Participations de ',
+    'usertitle' => 'Participations d\'utilisateur: ',
+    'racetitle' => 'Participations de course: ',
     'race' => 'Course'
 ];

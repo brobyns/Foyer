@@ -9,5 +9,6 @@ return [
     'resultsbtn' => ' Uitslagen',
     'importbtn' => ' Importeren',
     'useroverviewbtn' => ' Terug naar gebruikersoverzicht',
+    'raceoverviewbtn' => ' Terug naar wedstrijdoverzicht',
     'exportbtn' => ' Exporteer naar CSV'
 ];

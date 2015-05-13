@@ -1,4 +1,5 @@
 <?php
 return [
-    'title' => 'Overzicht deelnames'
+    'title' => 'Overzicht deelnames',
+    'filteroptions' => 'Filteropties'
 ];

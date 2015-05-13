@@ -18,7 +18,8 @@ class ResultsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $users = User::all();
+		return view('results/index',compact('users'));
 	}
 
 	/**
@@ -37,23 +38,4 @@ class ResultsController extends Controller {
         }
         return view('/results/show', compact('users' , 'participations', 'race'));
 	}
-
-    private function export($id){
-        $race = Race::findOrFail($id);
-        $participations = Participation::where('race_id', $race->id)->orderBy('raceNumber', 'asc')->get();
-        $users = array();
-        $results = Array(array('firstname', 'name', 'dateofbirth', 'time', 'year'));
-        foreach ($participations as $participation) {
-            $user = User::find($participation['user_id']);
-            $users[] = $participation->user;
-            $results[] = array($user->firstName, $user->name, $user->dateOfBirth, $participation->time, $participation->year);
-        }
-        Excel::create('results', function($excel) use($results){
-            $excel->sheet('Sheetname', function($sheet) use($results) {
-                $sheet->fromArray($results, null, 'A1', false, false);
-            });
-        })->download('csv');
-
-    }
-
 }

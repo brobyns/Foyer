@@ -26,9 +26,9 @@ class CreateParticipationsTable extends Migration {
                 ->onDelete('cascade');
 
             $table->integer('raceNumber');
-            $table->unique('raceNumber');
+            //$table->unique('raceNumber');
             $table->integer('chipNumber')->nullable();
-            $table->dateTime('time');
+            $table->dateTime('time')->nullable();
             $table->boolean('paid');
             $table->boolean('wiredTransfer');
             $table->boolean('signedUpOnline');

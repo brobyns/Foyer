@@ -10,8 +10,8 @@ return [
     'sex' => 'Geslacht',
     'male' => 'M',
     'female' => 'V',
-    'club' => 'club',
-    'valnr' => 'valnr',
+    'club' => 'Club',
+    'valnr' => 'Valnr',
     'shoebrand' => 'Merk schoenen'
 
 ];

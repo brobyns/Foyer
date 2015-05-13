@@ -3,11 +3,14 @@
                     <thead>
                     <tr>
                         <th>{{Lang::get('participations.year')}}</th>
+                        <th>{{Lang::get('users.firstname')}}</th>
+                        <th>{{Lang::get('users.name')}}</th>
+                        <th>{{Lang::get('users.dateofbirth')}}</th>
                         <th>{{Lang::get('participations.racenumber')}}</th>
                         <th>{{Lang::get('participations.chipnumber')}}</th>
                         <th>{{Lang::get('participations.time')}}</th>
                         <th>{{Lang::get('participations.distance')}}</th>
-                        <th>{{Lang::get('participation_show.race')}}</th>
+                        <th>{{Lang::get('races.race')}}</th>
                         <td></td>
                     </tr>
                     </thead>
@@ -15,6 +18,9 @@
                     @foreach($participations as $participation)
                         <tr>
                             <td>{{ $participation->year }}</td>
+                            <td>{{ $participation->user->firstName }}</td>
+                            <td>{{ $participation->user->name }}</td>
+                            <td>{{ $participation->user->dateOfBirth }}</td>
                             <td>{{ $participation->raceNumber }}</td>
                             <td>{{ $participation->chipNumber }}</td>
                             <td>{{ $participation->time  }}</td>
@@ -24,7 +30,7 @@
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <a href="{{url('participations/'.$participation->id).'/edit'}}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-wrench"></span>{{Lang::get('buttons.editbtn')}}</a>
+                                    <a href="{{url('participations/'.$participation->user_id.'/'. $participation->year.'/edit')}}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-wrench"></span>{{Lang::get('buttons.editbtn')}}</a>
                                 </div>
 
                             </td>
@@ -32,4 +38,3 @@
                     @endforeach
                     </tbody>
                 </table>
-                <a href="{{url('/users')}}" class="btn btn-lg btn-primary"></span>{{Lang::get('buttons.useroverviewbtn')}}</a>

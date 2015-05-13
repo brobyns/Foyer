@@ -4,5 +4,7 @@ return[
     'distance' => 'Distance (km)',
     'time' => 'Time',
     'racenumber' => 'Race number',
-    'chipnumber' => 'Chip number'
+    'chipnumber' => 'Chip number',
+    'paid' => 'Paid',
+    'wiredtransfer' => 'Wired transfer'
 ];

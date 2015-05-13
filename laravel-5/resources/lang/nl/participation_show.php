@@ -1,5 +1,6 @@
 <?php
 return [
-    'title' => 'Deelnames van ',
+    'usertitle' => 'Deelnames van gebruiker: ',
+    'racetitle' => 'Deelnames van wedstrijd: ',
     'race' => 'Wedstrijd'
 ];

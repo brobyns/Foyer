@@ -7,5 +7,8 @@ return [
 
     'create_race' => 'Course :name a été créé avec succès!',
     'update_race' => 'Course a été modifié avec succès!',
-    'delete_race' => 'Cours :name a été supprimé avec succès!'
+    'delete_race' => 'Cours :name a été supprimé avec succès!',
+
+    'import' => 'Fichier :filename a été importé avec succès!',
+    'no_file' => 'Aucun fichier n\'a été sélectionné'
 ];

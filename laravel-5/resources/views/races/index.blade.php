@@ -9,16 +9,6 @@
                     <h1 class="title">{{Lang::get('race_overview.title')}}</h1>
                 </div>
                 <br>
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> {{Lang::get('participation_form.error_input')}}<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 <div class="col-md-offset-10">
                     <a href="{{url('csv/export/races')}}" class="btn btn-sm btn-dark"><span class="glyphicon glyphicon-floppy-save"></span> {{Lang::get('buttons.exportbtn')}}</a>
                 </div>
@@ -46,7 +36,7 @@
                                 {!! Form::open(['action' => ['RacesController@destroy', $race->id], 'method' => 'delete', 'style' => 'display:inline']) !!}
                                     {!! Form::button('<span class="glyphicon glyphicon-trash"></span>' . Lang::get('buttons.deletebtn'), ['class'=>'btn btn-danger btn-sm', 'type'=>'submit']) !!}
                                 {!! Form::close() !!}
-                                <a href="{{url('results/'.$race->id).'/show'}}" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-stats"></span>{{Lang::get('buttons.resultsbtn')}}</a>
+                                <a href="{{url('participations/race/'.$race->id)}}" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-list-alt"></span>{{Lang::get('buttons.showparticipationsbtn')}}</a>
                             </td>
 
                          </tr>

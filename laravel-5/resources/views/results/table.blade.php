@@ -6,6 +6,7 @@
             <th>{{Lang::get('users.dateofbirth')}}</th>
             <th>{{Lang::get('participations.time')}}</th>
             <th>{{Lang::get('participations.year')}}</th>
+            <th>{{Lang::get('races.race')}}</th>
          </tr>
     </thead>
     <tbody>
@@ -17,6 +18,7 @@
                     <td>{{ $user->dateOfBirth }}</td>
                     <td>{{ $participation->time }}</td>
                     <td>{{ $participation->year }}</td>
+                    <td>{{ $participation->race->nameOfTheRace }}</td>
                 </tr>
             @endforeach
         @endforeach

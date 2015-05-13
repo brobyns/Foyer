@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Lang;
 
 class CsvController extends Controller {
 
@@ -28,36 +29,42 @@ class CsvController extends Controller {
 
     public function import(Request $request){
         $file = Input::file('file');
-        Excel::load($file, function($reader){
-            $reader->each(function($row){
-                $race = Race::where('nameOfTheRace' ,$row->get('naamwedstrijd'))->get();
-                $user = User::where('name', $row->get('naamD'))->where('firstName', $row->get('Voornaam'))->get();
-                if ($race->isEmpty()) {
-                    $race = new Race(['nameOfTheRace' => $row->get('naamwedstrijd'), 'firstRaceNumber' => '1800',
-                                        'distance' => $row->get('naamwedstrijd')]);
-                    $race->save();
-                }
-                if ($user->isEmpty()) {
-                    $user = new User(['name' => $row->get('naamd'), 'firstName' => $row->get('voornaam'), 'clubD' => $row->get('clubd'),
-                                        'emailAddress' => $row->get('email'), 'isMale' => $row->get('geslacht') =='M'?1:0,
-                                        'dateOfBirth' => $row->get('gd')->format('d/m/Y'),
-                                        'address' => $row->get('adres'),'zipCode' => $row->get('postcode'),'city' => $row->get('plaats'),
-                                        'valNr' => $row->get('valnr'),'shoeBrand' => $row->get('merkschoenen')]);
-                    $user->save();
-                }
-                //'race_id', 'year','user_id','raceNumber','chipNumber','time','paid','wiredTransfer','signedUpOnline'
-                $participation = new Participation(['race_id' => $race->id, 'year' => $row->get('jaar'), 'user_id' => $user->id,
-                                                    'raceNumber' => $row->get('rugnummer'), 'chipNumber' => $row->get('chipnummer'),
-                                                    'time' => $row->get('tijd'), 'paid' => $row->get('betTerPlaatse'),
-                                                    'wiredTransfer' => $row->get('gestort'), 'signedUpOnline' => $row->get('electronisch')]);
-                $participation->save();
+        if($file){
+            Excel::load($file, function($reader){
+                $reader->each(function($row){
+                    $race = Race::where('nameOfTheRace' ,$row->get('naamwedstrijd'))->get()->first();
+                    $user = User::where('name', $row->get('naamd'))->where('firstName', $row->get('voornaam'))->get()->first();
 
+                    if (!$race) {
+                        $race = new Race(['nameOfTheRace' => $row->get('naamwedstrijd'), 'firstRaceNumber' => '1800',
+                                            'distance' => $row->get('naamwedstrijd')]);
+                        $race->save();
+                    }
+                    if (!$user) {
+                        $user = new User(['name' => $row->get('naamd'), 'firstName' => $row->get('voornaam'), 'clubD' => $row->get('clubd'),
+                                            'emailAddress' => $row->get('email'), 'isMale' => $row->get('geslacht') =='M'?1:0,
+                                            'dateOfBirth' => $row->get('gd')->format('d/m/Y'),
+                                            'address' => $row->get('adres'),'zipCode' => $row->get('postcode'),'city' => $row->get('plaats'),
+                                            'valNr' => $row->get('valnr'),'shoeBrand' => $row->get('merkschoenen')]);
+                        $user->save();
+                    }
+                    $participation = Participation::where('user_id' , $user->id)->where('year',$row->get('jaar'))->get()->first();
+                    if(!$participation){
+                        $participation = new Participation(['race_id' => $race->id, 'year' => $row->get('jaar'), 'user_id' => $user->id,
+                        'raceNumber' => $row->get('rugnummer'), 'chipNumber' => $row->get('chipnummer'),
+                        'time' => $row->get('tijd'), 'paid' => $row->get('betTerPlaatse')=='TRUE'?1:0,
+                        'wiredTransfer' => $row->get('gestort')=='TRUE'?1:0,
+                        'signedUpOnline' => $row->get('electronisch')=='TRUE'?1:0]);
+                        $participation->save();
+                    }
+                });
             });
-            /*$results = $reader->toArray();
-            var_dump($results);*/
-        });
-
-
+            $message = str_replace(':filename', $file->getClientOriginalName(), Lang::get('messages.import'));
+            flash()->success($message);
+        }else{
+            flash()->error(Lang::get('messages.no_file'));
+        }
+        return view('csv/import');
     }
 
     public function export($tablename){

@@ -4,5 +4,7 @@ return[
     'distance' => 'Distance (km)',
     'time' => 'Temps',
     'racenumber' => 'Numéro de course',
-    'chipnumber' => 'Numéro de puce'
+    'chipnumber' => 'Numéro de puce',
+    'paid' => 'Payé',
+    'wiredtransfer' => 'Virement'
 ];

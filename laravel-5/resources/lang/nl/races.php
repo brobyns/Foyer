@@ -2,5 +2,6 @@
 return [
     'nameOfTheRace' => 'Naam',
     'firstRaceNumber' => 'Eerste nummber',
-    'distance' => 'Afstand'
+    'distance' => 'Afstand',
+    'race' => 'Wedstrijd'
 ];
