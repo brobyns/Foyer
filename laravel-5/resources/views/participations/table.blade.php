@@ -11,7 +11,9 @@
                         <th>{{Lang::get('participations.time')}}</th>
                         <th>{{Lang::get('participations.distance')}}</th>
                         <th>{{Lang::get('races.race')}}</th>
+                        @if (App\Registrant::where('email', Auth::user()->email)->get()->first()->isAdmin)
                         <td></td>
+                        @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -25,6 +27,7 @@
                             <td>{{ $participation->chipNumber }}</td>
                             <td>{{ $participation->time  }}</td>
                             <td>{{ $participation->race->distance  }}</td>
+                            @if (App\Registrant::where('email', Auth::user()->email)->get()->first()->isAdmin)
                             <td>
                                 <a href="{{url('races/'.$participation->race->id).'/edit'}}">{{ $participation->race->nameOfTheRace }}</a>
                             </td>
@@ -32,8 +35,10 @@
                                 <div class="form-group">
                                     <a href="{{url('participations/'.$participation->user_id.'/'. $participation->year.'/edit')}}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-wrench"></span>{{Lang::get('buttons.editbtn')}}</a>
                                 </div>
-
                             </td>
+                            @else
+                                <td>{{ $participation->race->nameOfTheRace }}</td>
+                            @endif
                          </tr>
                     @endforeach
                     </tbody>

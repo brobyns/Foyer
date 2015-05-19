@@ -35,13 +35,16 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-				@if (Auth::guest())
+                @if (Auth::guest())
 				    <li><a href="{{ url('/') }}">{{Lang::get('menu.home')}}</a></li>
-				@else
+				@elseif (App\Registrant::where('email', Auth::user()->email)->get()->first()->isAdmin)
 					<li><a href="{{ url('users') }}">{{Lang::get('menu.users')}}</a></li>
 					<li><a href="{{ url('races') }}">{{Lang::get('menu.races')}}</a></li>
 					<li><a href="{{ url('participations') }}">{{Lang::get('menu.participations')}}</a></li>
+					<li><a href="{{ url('timeregistration') }}">{{Lang::get('menu.timeregistration')}}</a></li>
 					<li><a href="{{ url('csv/import') }}">{{Lang::get('menu.import')}}</a></li>
+                @else
+                        <li><a href="{{ url('participations') }}">{{Lang::get('menu.participations')}}</a></li>
 				@endif
 					<li><a href="{{ url('contact') }}">{{Lang::get('menu.contact')}}</a></li>
 				</ul>
@@ -129,6 +132,41 @@
                     });
                 }
             });
+        });
+        $('#searchform').submit(function(event){
+           event.preventDefault();
+           ajaxSearch();
+        });
+
+        $('#search').click(function(){
+            ajaxSearch();
+        });
+
+        function ajaxSearch(){
+            $.ajax({
+                url: 'users/filter',
+                type: "POST",
+                data: {'filteropt':$('#filteropt').val(),'queryString':$('#filterinput').val(),'_token': $('input[name=_token]').val()},
+                success: function(response){
+                    $('#table').html(response);
+                        $("#myTable").tablesorter({
+                            dateFormat : "uk" // default date format
+                    });
+                }
+            });
+        }
+
+        $('#timeform').submit(function(event){
+            event.preventDefault();
+            $.ajax({
+            url: 'participations/time',
+                type: "POST",
+                data: {'userid':$('#userid').val(),'_token': $('input[name=_token]').val()},
+                success: function(response){
+                    $('#message').html(response);
+                }
+            });
+            $('#userid').val('');
         });
 
         $("#myTable").tablesorter({

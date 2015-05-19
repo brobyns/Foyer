@@ -36,8 +36,7 @@
                                 {!! Form::open(['action' => ['RacesController@destroy', $race->id], 'method' => 'delete', 'style' => 'display:inline']) !!}
                                     {!! Form::button('<span class="glyphicon glyphicon-trash"></span>' . Lang::get('buttons.deletebtn'), ['class'=>'btn btn-danger btn-sm', 'type'=>'submit']) !!}
                                 {!! Form::close() !!}
-                                <a href="{{url('participations/race/'.$race->id)}}" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-list-alt"></span>{{Lang::get('buttons.showparticipationsbtn')}}</a>
-                            </td>
+                                <a href="{{url('participations/race/'.$race->id)}}" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-list-alt"></span>{{Lang::get('buttons.showparticipationsbtn')}}</a>                            </td>
 
                          </tr>
                     @endforeach

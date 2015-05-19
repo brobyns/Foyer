@@ -3,12 +3,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                    <h1 class="title">{{Lang::get('participation_overview.title')}}</h1>
+                <h1 class="title">{{Lang::get('participation_overview.title')}}</h1>
                 <br>
                 <div class="row">
+                @if (App\Registrant::where('email', Auth::user()->email)->get()->first()->isAdmin)
                     <div class="col-xs-6 col-sm-4">
                         <a href="{{url('/users')}}" class="btn btn-lg btn-primary"></span>{{Lang::get('buttons.useroverviewbtn')}}</a>
                     </div>
+                @endif
                     <div class="col-xs-6 col-sm-4">
                         <div class="panel panel-default ">
                             <div class="panel-heading">
@@ -21,10 +23,10 @@
                                         {!! Form::label('year', Lang::get('participations.year'), ['class' =>'control-label', 'style' => 'float:left']) !!}
                                         <ul class="list-inline">
                                             @foreach($years as $year)
-                                            <li>
-                                                {!! Form::label('year', $year, ['class' =>'control-label', 'style' => 'padding:7px']) !!}
-                                                {!! Form::checkbox('year', $year, null, ['class' => 'filter']) !!}
-                                            </li>
+                                                <li>
+                                                    {!! Form::label('year', $year, ['class' =>'control-label', 'style' => 'padding:7px']) !!}
+                                                    {!! Form::checkbox('year', $year, null, ['class' => 'filter']) !!}
+                                                </li>
                                             @endforeach
                                         </ul>
                                     </li>
@@ -32,10 +34,10 @@
                                         {!! Form::label('distance', Lang::get('participations.distance'), ['class' =>'control-label', 'style' => 'float:left']) !!}
                                         <ul class="list-inline">
                                             @foreach($distances as $distance)
-                                            <li>
-                                                {!! Form::label('distance', $distance, ['class' =>'control-label', 'style' => 'padding:7px']) !!}
-                                                {!! Form::checkbox('distance', $distance, null, ['class' => 'filter']) !!}
-                                            </li>
+                                                <li>
+                                                    {!! Form::label('distance', $distance, ['class' =>'control-label', 'style' => 'padding:7px']) !!}
+                                                    {!! Form::checkbox('distance', $distance, null, ['class' => 'filter']) !!}
+                                                </li>
                                             @endforeach
                                         </ul>
                                     </li>

@@ -10,10 +10,15 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Database\Query;
+use Carbon\Carbon;
 
 class ParticipationsController extends Controller {
 
-	public function index(){
+    public function __Construct(){
+        $this->middleware('auth');
+    }
+
+    public function index(){
         $participations = Participation::all();
         $years = Participation::select('year')->groupBy('year')->get()->fetch('year');
         $distances = Race::select('distance')->groupBy('distance')->get()->fetch('distance');
@@ -40,12 +45,30 @@ class ParticipationsController extends Controller {
     public function update($id, $year, Request $request){
         $participation = Participation::where('user_id' , $id)->where('year', $year)->get()->first();
         $participation->update(['race_id' => $participation->race_id, 'year' => $year, 'user_id' => $id,
-                                'raceNumber' => $participation->raceNumber, 'chipNumber' => $participation->chipNumber,
-                                'time' => $participation->time, 'paid' => $request->input('paid'),
-                                'wiredTransfer' => $request->input('wiredTransfer'),
-                                'signedUpOnline' => $participation->signedUpOnline]);
+            'raceNumber' => $participation->raceNumber, 'chipNumber' => $participation->chipNumber,
+            'time' => $participation->time, 'paid' => $request->input('paid'),
+            'wiredTransfer' => $request->input('wiredTransfer'),
+            'signedUpOnline' => $participation->signedUpOnline]);
         flash()->success(Lang::get('messages.update_participation'));
         return redirect('participations');
+    }
+
+
+    public function time(){
+        return view('pages/timeregistration');
+    }
+
+    public function registertime(Request $request){
+        if($request->ajax()) {
+            $userid = $request->input('userid');
+            $participation = Participation::where('user_id',$userid)->where('year', Carbon::now()->year)->get()->first();
+            $start = Carbon::now()->addHours(-2)->addMinutes(-13)->addSeconds(-32);
+            $end = Carbon::now();
+            $differenceInSeconds = $end->diffInSeconds($start);
+            $time = gmdate("H:i:s", $differenceInSeconds);
+            $participation->time = $time;
+            $participation->update();
+        }
     }
 
     public function filter(Request $request){
@@ -55,7 +78,7 @@ class ParticipationsController extends Controller {
             $query = null;
             if($distances){
                 $query = Participation::join('races', 'participations.race_id', '=', 'races.id')
-                        ->whereIn('distance', $distances);
+                    ->whereIn('distance', $distances);
             }
             if($years){
                 if($query){

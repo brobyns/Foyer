@@ -19,7 +19,7 @@ class ResultsController extends Controller {
 	public function index()
 	{
         $users = User::all();
-		return view('results/index',compact('users'));
+        return view('results/index',compact('users'));
 	}
 
 	/**
@@ -38,4 +38,5 @@ class ResultsController extends Controller {
         }
         return view('/results/show', compact('users' , 'participations', 'race'));
 	}
+
 }

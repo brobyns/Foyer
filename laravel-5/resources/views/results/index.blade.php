@@ -12,7 +12,7 @@
                 <a href="{{url('/csv/export/results')}}" class="btn btn-sm btn-dark pull-right"><span class="glyphicon glyphicon-floppy-save"></span> {{Lang::get('buttons.exportbtn')}}</a>
                 <br>
                 <br>
-               @include('results.table', ['users' => $users])
+                @include('results.table', ['users' => $users])
             </div>
         </div>
     </div>

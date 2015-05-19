@@ -1,5 +1,4 @@
 <?php namespace App\Http\Controllers;
-
 use App\Participation;
 use App\Race;
 use App\User;
@@ -9,24 +8,20 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Lang;
-
 class CsvController extends Controller {
-
-
     public function __construct()
     {
         $this->middleware('auth');
     }
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
         return view('csv/import');
-	}
-
+    }
     public function import(Request $request){
         $file = Input::file('file');
         if($file){
@@ -34,27 +29,26 @@ class CsvController extends Controller {
                 $reader->each(function($row){
                     $race = Race::where('nameOfTheRace' ,$row->get('naamwedstrijd'))->get()->first();
                     $user = User::where('name', $row->get('naamd'))->where('firstName', $row->get('voornaam'))->get()->first();
-
                     if (!$race) {
                         $race = new Race(['nameOfTheRace' => $row->get('naamwedstrijd'), 'firstRaceNumber' => '1800',
-                                            'distance' => $row->get('naamwedstrijd')]);
+                            'distance' => $row->get('naamwedstrijd')]);
                         $race->save();
                     }
                     if (!$user) {
                         $user = new User(['name' => $row->get('naamd'), 'firstName' => $row->get('voornaam'), 'clubD' => $row->get('clubd'),
-                                            'emailAddress' => $row->get('email'), 'isMale' => $row->get('geslacht') =='M'?1:0,
-                                            'dateOfBirth' => $row->get('gd')->format('d/m/Y'),
-                                            'address' => $row->get('adres'),'zipCode' => $row->get('postcode'),'city' => $row->get('plaats'),
-                                            'valNr' => $row->get('valnr'),'shoeBrand' => $row->get('merkschoenen')]);
+                            'emailAddress' => $row->get('email'), 'isMale' => $row->get('geslacht') =='M'?1:0,
+                            'dateOfBirth' => $row->get('gd')->format('d/m/Y'),
+                            'address' => $row->get('adres'),'zipCode' => $row->get('postcode'),'city' => $row->get('plaats'),
+                            'valNr' => $row->get('valnr'),'shoeBrand' => $row->get('merkschoenen')]);
                         $user->save();
                     }
                     $participation = Participation::where('user_id' , $user->id)->where('year',$row->get('jaar'))->get()->first();
                     if(!$participation){
                         $participation = new Participation(['race_id' => $race->id, 'year' => $row->get('jaar'), 'user_id' => $user->id,
-                        'raceNumber' => $row->get('rugnummer'), 'chipNumber' => $row->get('chipnummer'),
-                        'time' => $row->get('tijd'), 'paid' => $row->get('betTerPlaatse')=='TRUE'?1:0,
-                        'wiredTransfer' => $row->get('gestort')=='TRUE'?1:0,
-                        'signedUpOnline' => $row->get('electronisch')=='TRUE'?1:0]);
+                            'raceNumber' => $row->get('rugnummer'), 'chipNumber' => $row->get('chipnummer'),
+                            'time' => $row->get('tijd'), 'paid' => $row->get('betTerPlaatse')=='TRUE'?1:0,
+                            'wiredTransfer' => $row->get('gestort')=='TRUE'?1:0,
+                            'signedUpOnline' => $row->get('electronisch')=='TRUE'?1:0]);
                         $participation->save();
                     }
                 });
@@ -66,10 +60,8 @@ class CsvController extends Controller {
         }
         return view('csv/import');
     }
-
     public function export($tablename){
         Excel::create($tablename . '_export_' . Carbon::now()->setTimezone('Europe/Brussels')->toDateTimeString(), function($excel) use ($tablename) {
-
             $excel->sheet('Sheetname', function($sheet) use($tablename){
                 if($tablename == 'users'){
                     $users = \App\User::all();
@@ -84,7 +76,6 @@ class CsvController extends Controller {
             });
         })->download('csv');
     }
-
     public function exportResults($id){
         $race = Race::findOrFail($id);
         $participations = Participation::where('race_id', $race->id)->orderBy('raceNumber', 'asc')->get();
@@ -101,7 +92,6 @@ class CsvController extends Controller {
             });
         })->download('csv');
     }
-
     public function exportParticipations($id){
         Excel::create('results', function($excel) use($id){
             $excel->sheet('Sheetname', function($sheet) use($id) {
@@ -111,5 +101,4 @@ class CsvController extends Controller {
             });
         })->download('csv');
     }
-
 }
