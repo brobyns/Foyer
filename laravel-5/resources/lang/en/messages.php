@@ -9,5 +9,6 @@ return [
     'update_race' => 'Race has been updated successfully!',
     'delete_race' => 'Race :name has been deleted successfully!',
     'import' => 'File :filename has been imported successfully!',
-    'no_file' => 'No file has been selected'
+    'no_file' => 'No file has been selected',
+    'register_time' => 'Time registered succesfully!'
 ];

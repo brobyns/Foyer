@@ -5,8 +5,6 @@ use App\Http\Controllers\Controller;
 use App\Participation;
 use App\User;
 use App\Race;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Database\Query;
@@ -55,19 +53,23 @@ class ParticipationsController extends Controller {
 
 
     public function time(){
-        return view('pages/timeregistration');
+        $races = Race::all();
+        return view('pages/timeregistration', compact('races'));
     }
 
     public function registertime(Request $request){
         if($request->ajax()) {
             $userid = $request->input('userid');
             $participation = Participation::where('user_id',$userid)->where('year', Carbon::now()->year)->get()->first();
-            $start = Carbon::now()->addHours(-2)->addMinutes(-13)->addSeconds(-32);
+            $start = Carbon::createFromFormat("Y-m-d H:i:s", $participation->race->startTime);
             $end = Carbon::now();
             $differenceInSeconds = $end->diffInSeconds($start);
             $time = gmdate("H:i:s", $differenceInSeconds);
-            $participation->time = $time;
-            $participation->update();
+            if(!$participation->time){
+                $participation->time = $time;
+                $participation->update();
+            }
+            return response()->json(Lang::get('messages.update_participation'));
         }
     }
 

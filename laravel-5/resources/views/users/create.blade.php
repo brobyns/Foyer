@@ -16,3 +16,7 @@
         </div>
     </div>
 @stop
+@section('scripts')
+    {!! Html::script('/javascript/autocomplete.js')!!}
+    {!! Html::script('/javascript/datepicker.js')!!}
+@endsection

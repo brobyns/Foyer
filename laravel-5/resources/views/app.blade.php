@@ -15,10 +15,11 @@
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
+	<!--
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    -->
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -77,128 +78,18 @@
 		</div>
 	</nav>
 	@yield('content')
-
-	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
- <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  {!! Html::script('/javascript/jquery.tablesorter.js') !!}
-  {!! Html::script('/javascript/spin.js') !!}
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+@yield('scripts')
   <script>
-    $(function() {
-      $( "#datepicker" ).datepicker({
-        dateFormat: "dd/mm/yy",
-        changeMonth: true,
-        changeYear: true,
-        maxDate: "-2Y",
-        minDate: "-100Y",
-        yearRange: "-100:-2"
-        });
-      });
-
-      $(function () {
-                  $("#firstName").autocomplete({
-                      source: "search/autocomplete",
-                      minLength: 2,
-                      select: function (event, ui) {
-                          //$('#firstName').val(ui.item.value);
-                          var id = ui.item.id;
-                          window.location =  id + '/edit';
-                      }
-                  });
-              });
-
     $('div.alert').not('alert-important').delay(2500).slideUp(300);
     $(document).ready(function()
         {
-
-        $('.filter').change(function(){
-            var years = $('input[name=year]:checked').map(function(){
-                return this.value;
-            }).get();
-            var distances = $('input[name=distance]:checked').map(function(){
-                return this.value;
-            }).get();
-            $.ajax({
-                url: 'participations/filter',
-                type: "POST",
-                data: {'years':years,'distances':distances,'_token': $('input[name=_token]').val()},
-                success: function(response){
-                    $('#table').html(response);
-                        $("#myTable").tablesorter({
-                            dateFormat : "uk" // default date format
-                    });
-                }
-            });
-        });
-        $('#searchform').submit(function(event){
-           event.preventDefault();
-           ajaxSearch();
-        });
-
-        $('#search').click(function(){
-            ajaxSearch();
-        });
-
-        function ajaxSearch(){
-            $.ajax({
-                url: 'users/filter',
-                type: "POST",
-                data: {'filteropt':$('#filteropt').val(),'queryString':$('#filterinput').val(),'_token': $('input[name=_token]').val()},
-                success: function(response){
-                    $('#table').html(response);
-                        $("#myTable").tablesorter({
-                            dateFormat : "uk" // default date format
-                    });
-                }
-            });
-        }
-
-        $('#timeform').submit(function(event){
-            event.preventDefault();
-            $.ajax({
-            url: 'participations/time',
-                type: "POST",
-                data: {'userid':$('#userid').val(),'_token': $('input[name=_token]').val()},
-                success: function(response){
-                    $('#message').html(response);
-                }
-            });
-            $('#userid').val('');
-        });
-
         $("#myTable").tablesorter({
             dateFormat : "uk" // default date format
         });
-    });
+   });
     </script>
 
-    <script>
-    var opts = {
-      lines: 11, // The number of lines to draw
-      length: 7, // The length of each line
-      width: 6, // The line thickness
-      radius: 15, // The radius of the inner circle
-      corners: 1, // Corner roundness (0..1)
-      rotate: 0, // The rotation offset
-      direction: 1, // 1: clockwise, -1: counterclockwise
-      color: '#000', // #rgb or #rrggbb or array of colors
-      speed: 1, // Rounds per second
-      trail: 60, // Afterglow percentage
-      shadow: false, // Whether to render a shadow
-      hwaccel: false, // Whether to use hardware acceleration
-      className: 'spinner', // The CSS class to assign to the spinner
-      zIndex: 2e9, // The z-index (defaults to 2000000000)
-      top: '100%', // Top position relative to parent
-      left: '50%' // Left position relative to parent
-    };
-    var target = document.getElementById('importbtn');
-    $('#importbtn').click(function(){
-        var spinner = new Spinner(opts).spin(target);
-        target.appendChild(spinner.el);
-    });
-
-    </script>
 </html>

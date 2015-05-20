@@ -30,6 +30,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
     Route::post('/participations/time', 'ParticipationsController@registertime');
     Route::get('/timeregistration', 'ParticipationsController@time');
     Route::get('/participations', 'ParticipationsController@index');
+    Route::patch('races/{id}/start', 'RacesController@start');
 
     //Route::get('/results/{id}/show', 'ResultsController@show');
     //Route::get('results', 'ResultsController@index');

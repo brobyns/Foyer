@@ -88,9 +88,8 @@ class UsersController extends Controller {
             });
         }
         $participation = Participation::where('user_id', $user->id)->get()->first();
-        $participation->update(['race_id' => $request->input('distance'), 'year' => Carbon::now()->year,
-            'user_id' => $user->id,'raceNumber' => $user->id, 'chipNumber' => 0,
-            "time"=>Carbon::now(),'paid' => 1, 'wiredTransfer' => 1, 'signedUpOnline' => 1]);
+        $participation->race_id = $request->input('distance');
+        $participation->update();
         flash()->success(Lang::get('messages.update_user'));
         return redirect('users');
     }

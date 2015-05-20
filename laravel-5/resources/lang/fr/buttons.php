@@ -4,6 +4,7 @@ return [
     'editbtn' => ' Editer',
     'deletebtn' => ' Supprimer',
     'savebtn' => ' Sauvegarder',
+    'startbtn' => ' Démarre la course. ',
     'cancelbtn' => ' Annuler',
     'showparticipationsbtn' => ' Participations',
     'resultsbtn' => ' Resultats',

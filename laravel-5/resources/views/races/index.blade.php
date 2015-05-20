@@ -47,3 +47,7 @@
         </div>
     </div>
 @stop
+@section('scripts')
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    {!! Html::script('/javascript/jquery.tablesorter.js') !!}
+@endsection

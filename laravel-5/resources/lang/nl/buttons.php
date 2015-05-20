@@ -4,6 +4,7 @@ return [
     'editbtn' => ' Bewerk',
     'deletebtn' => ' Verwijder',
     'savebtn' => ' Opslaan',
+    'startbtn' => ' Start wedstrijd',
     'cancelbtn' => ' Annuleren',
     'showparticipationsbtn' => ' Deelnames',
     'resultsbtn' => ' Uitslagen',
