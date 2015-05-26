@@ -35,7 +35,6 @@ class UsersController extends Controller {
 
     public function store(UserRequest $request){
         $input = $request->all();
-        User::create($input);
         $user = User::create($input);
         if ($user->emailAddress) {
             $password = $this->random_password();
@@ -49,8 +48,8 @@ class UsersController extends Controller {
         if($race){
             $participation = new Participation(['race_id'=> $race->id,'year' => Carbon::now()->year,'user_id' => $user->id,
                 'raceNumber' =>$user->id, 'chipNumber' => 0,
-                "time"=>Carbon::now(),'paid' => 1,
-                'wiredTransfer' => 1, 'signedUpOnline' => 1]);
+                "time"=>'','paid' => 0,
+                'wiredTransfer' => 0, 'signedUpOnline' => 0]);
             $user->participations()->save($participation);
         }
         $message = str_replace(':name', $user->firstName . ' '. $user->name, Lang::get('messages.create_user'));
@@ -87,9 +86,17 @@ class UsersController extends Controller {
                 $message->to($registrant->email)->subject('Account info');
             });
         }
-        $participation = Participation::where('user_id', $user->id)->get()->first();
-        $participation->race_id = $request->input('distance');
-        $participation->update();
+        $participation = Participation::where('user_id', $user->id)->where('year', Carbon::now()->year)->get()->first();
+        if($participation){
+            $participation->race_id = $request->input('distance');
+            $participation->update();
+        }else{
+            $participation = new Participation(['race_id'=> $request->input('distance'),'year' => Carbon::now()->year,'user_id' => $user->id,
+                'raceNumber' =>$user->id, 'chipNumber' => 0,
+                "time"=>'','paid' => 0,
+                'wiredTransfer' => 0, 'signedUpOnline' => 0]);
+            $user->participations()->save($participation);
+        }
         flash()->success(Lang::get('messages.update_user'));
         return redirect('users');
     }

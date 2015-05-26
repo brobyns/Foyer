@@ -9,10 +9,16 @@
                     <h1 class="title">{{Lang::get('race_overview.title')}}</h1>
                 </div>
                 <br>
-                <div class="col-md-offset-10">
-                    <a href="{{url('csv/export/races')}}" class="btn btn-sm btn-dark"><span class="glyphicon glyphicon-floppy-save"></span> {{Lang::get('buttons.exportbtn')}}</a>
+                <div class="row" style="margin-bottom: 15px">
+                <div class="col-xs-6 col-sm-4">
+                    <a href="{{url('races/create')}}" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span>{{Lang::get('race_overview.createbtn')}}</a>
                 </div>
-                <br>
+                <div class="clearfix visible-xs-block"></div>
+                <div class="col-xs-6 col-sm-4"></div>
+                <div class="col-xs-6 col-sm-4">
+                    <a href="{{url('csv/export/races')}}" class="btn btn-sm btn-dark pull-right"><span class="glyphicon glyphicon-floppy-save"></span> {{Lang::get('buttons.exportbtn')}}</a>
+                </div>
+                </div>
                 <table id="myTable" class="table table-striped table-bordered table-responsive tablesorter">
                     <thead>
                     <tr>
@@ -42,7 +48,6 @@
                     @endforeach
                     </tbody>
                 </table>
-                <a href="{{url('races/create')}}" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span>{{Lang::get('race_overview.createbtn')}}</a>
             </div>
         </div>
     </div>

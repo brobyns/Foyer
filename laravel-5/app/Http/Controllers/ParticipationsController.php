@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\App;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Participation;
@@ -7,8 +8,8 @@ use App\User;
 use App\Race;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
-use Illuminate\Database\Query;
 use Carbon\Carbon;
+use App\SearchFilter;
 
 class ParticipationsController extends Controller {
 
@@ -58,45 +59,55 @@ class ParticipationsController extends Controller {
     }
 
     public function registertime(Request $request){
-        if($request->ajax()) {
-            $userid = $request->input('userid');
-            $participation = Participation::where('user_id',$userid)->where('year', Carbon::now()->year)->get()->first();
-            $start = Carbon::createFromFormat("Y-m-d H:i:s", $participation->race->startTime);
-            $end = Carbon::now();
-            $differenceInSeconds = $end->diffInSeconds($start);
-            $time = gmdate("H:i:s", $differenceInSeconds);
-            if(!$participation->time){
-                $participation->time = $time;
-                $participation->update();
-            }
-            return response()->json(Lang::get('messages.update_participation'));
+        $userid = $request->input('userid');
+        $participation = Participation::where('user_id',$userid)->where('year', Carbon::now()->year)->get()->first();
+        $start = Carbon::createFromFormat("Y-m-d H:i:s", $participation->race->startTime);
+        $end = Carbon::now();
+        $differenceInSeconds = $end->diffInSeconds($start);
+        $time = gmdate("H:i:s", $differenceInSeconds);
+        if(!$participation->time){
+            $participation->time = $time;
+            $participation->update();
         }
+        return response()->json(array($participation->race->id, Participation::where('race_id', $participation->race->id)->whereNotNull('time')->count()));
     }
 
     public function filter(Request $request){
-        if($request->ajax()) {
-            $years = $request->input('years');
-            $distances = $request->input('distances');
-            $query = null;
-            if($distances){
-                $query = Participation::join('races', 'participations.race_id', '=', 'races.id')
-                    ->whereIn('distance', $distances);
+        $years = $request->input('years');
+        $distances = $request->input('distances');
+        $queryString = $request->input('queryString');
+        $column = $request->input('filteropt');
+        $query = null;
+        if($distances){
+            $query = Participation::join('races', 'participations.race_id', '=', 'races.id')
+                ->whereIn('distance', $distances);
+        }
+        if($years){
+            if($query){
+                $query = $query->whereIn('year', $years);
+            }else {
+                $query = Participation::whereIn('year', $years);
             }
-            if($years){
-                if($query){
-                    $query = $query->whereIn('year', $years);
-                }else {
-                    $query = Participation::whereIn('year', $years);
+        }
+        if($queryString){
+            $userids = User::where( $column, 'LIKE', '%'.$queryString.'%')->get()->fetch('id');
+            if($query){
+                if(!$userids->isEmpty()) {
+                    $query = $query->whereIn('user_id', $userids->toArray());
+                }
+            }else {
+                if(!$userids->isEmpty()) {
+                    $query = Participation::whereIn('user_id', $userids->toArray());
                 }
             }
-            if($query){
-                $participations = $query->get();
-            }else{
-                $participations = Participation::all();
-            }
-            $years = Participation::select('year')->groupBy('year')->get()->fetch('year');
-            $distances = Race::select('distance')->groupBy('distance')->get()->fetch('distance');
-            return view('participations.table', compact('participations', 'years', 'distances'));
         }
+        if($query){
+            $participations = $query->get();
+        }else{
+            $participations = Participation::all();
+        }
+        $years = Participation::select('year')->groupBy('year')->get()->fetch('year');
+        $distances = Race::select('distance')->groupBy('distance')->get()->fetch('distance');
+        return view('participations.table', compact('participations', 'years', 'distances'));
     }
 }

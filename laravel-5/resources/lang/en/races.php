@@ -10,4 +10,5 @@ return [
     'createbtn' => ' Create race',
     'cancelbtn' => ' Cancel',
     'numberparticipants' => 'Number of participants',
+    'numberArrived' => 'Number of finishers'
 ];

@@ -5,5 +5,6 @@ return [
     'distance' => 'Afstand',
     'race' => 'Wedstrijd',
     'startTime' => 'Starttijd',
-    'status' => 'Status'
+    'status' => 'Status',
+    'numberArrived' => 'Aantal aangekomen'
 ];

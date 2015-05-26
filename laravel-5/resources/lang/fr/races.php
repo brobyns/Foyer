@@ -9,5 +9,6 @@ return [
     'savebtn' => ' Save',
     'createbtn' => ' Create race',
     'cancelbtn' => ' Cancel',
-    'numberparticipants' => 'Number of participants',
+    'numberparticipants' => 'Nombre de participants',
+    'numberArrived' => 'Nombre d\'arrivants'
 ];

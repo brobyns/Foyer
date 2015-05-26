@@ -75,7 +75,7 @@
                     @if(!$user || $user->participations->isEmpty())
                         {!! Form::radio('distance', $race->id, true) !!}
                     @else
-                        @if($race->distance == $user->participations->last()->race->distance)
+                        @if($race->distance == $user->participations->first()->race->distance)
                             {!! Form::radio('distance', $race->id, true) !!}
                         @else
                              {!! Form::radio('distance', $race->id, false) !!}
