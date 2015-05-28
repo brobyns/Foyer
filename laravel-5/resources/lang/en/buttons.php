@@ -5,6 +5,7 @@ return [
     'deletebtn' => ' Delete',
     'savebtn' => ' Save',
     'startbtn' => ' Start race',
+    'stopbtn' => ' Stop race',
     'cancelbtn'=> ' Cancel',
     'showparticipationsbtn' => ' Participations',
     'resultsbtn' => ' Results',

@@ -10,5 +10,7 @@ return [
     'delete_race' => 'Cours :name a été supprimé avec succès!',
 
     'import' => 'Fichier :filename a été importé avec succès!',
-    'no_file' => 'Aucun fichier n\'a été sélectionné'
+    'no_file' => 'Aucun fichier n\'a été sélectionné',
+    'time_not_started' => 'Course: :racename n\'a pas encore été démarré',
+    'time_already_registered' => 'Temps de numéro de course: :racenumber a déjà été enregistré!'
 ];

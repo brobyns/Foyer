@@ -29,6 +29,7 @@ class CreateParticipationsTable extends Migration {
             //$table->unique('raceNumber');
             $table->integer('chipNumber')->nullable();
             $table->string('time')->nullable();
+            $table->float('averageSpeed')->nullable();
             $table->boolean('paid');
             $table->boolean('wiredTransfer');
             $table->boolean('signedUpOnline');

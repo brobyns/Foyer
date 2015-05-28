@@ -10,5 +10,7 @@ return [
     'delete_race' => 'Race :name has been deleted successfully!',
     'import' => 'File :filename has been imported successfully!',
     'no_file' => 'No file has been selected',
-    'register_time' => 'Time registered succesfully!'
+    'register_time' => 'Time registered succesfully!',
+    'time_not_started' => 'Race: :racename has not been started yet!',
+    'time_already_registered' => 'Time of race number: :racenumber has already been registered!'
 ];

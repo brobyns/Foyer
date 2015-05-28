@@ -10,7 +10,7 @@ function countup(element,start) {
         el.innerHTML = '- -  - -  - -'
     }else {
         // Set the timer
-        var interval = setInterval(function () {
+        return interval = setInterval(function () {
             var d2 = new Date();
             var d1 = new Date(start);
             var delta = Math.round((d2 - d1) / 1000);
@@ -30,6 +30,9 @@ function countup(element,start) {
 }
 
 var rows = $("#tbody").children().length;
+var intervalsArray = new Array();
 for(var i=0; i<rows; i++){
-    countup('timeDiff'+i, document.getElementById('startTime'+i).innerHTML);
+    if($('#timeDiff'+i).children().length == 0){
+        intervalsArray[i] = countup('timeDiff'+i, document.getElementById('startTime'+i).innerHTML);
+    }
 }

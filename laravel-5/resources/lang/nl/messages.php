@@ -10,5 +10,7 @@ return [
     'delete_race' => 'Wedstrijd :name werd met succes verwijderd',
 
     'import' => 'Bestand :filename werd met succes geïmporteerd!',
-    'no_file' => 'Er is geen bestand geselecteerd'
+    'no_file' => 'Er is geen bestand geselecteerd',
+    'time_not_started' => 'Wedstrijd: :racename is nog niet gestart!',
+    'time_already_registered' => 'Tijd van rugnummer: :racenumber is al geregistreerd!'
 ];

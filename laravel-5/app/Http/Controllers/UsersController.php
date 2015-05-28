@@ -48,7 +48,7 @@ class UsersController extends Controller {
         if($race){
             $participation = new Participation(['race_id'=> $race->id,'year' => Carbon::now()->year,'user_id' => $user->id,
                 'raceNumber' =>$user->id, 'chipNumber' => 0,
-                "time"=>'','paid' => 0,
+                "time"=>'', "averageSpeed" => null, 'paid' => 0,
                 'wiredTransfer' => 0, 'signedUpOnline' => 0]);
             $user->participations()->save($participation);
         }
@@ -93,7 +93,7 @@ class UsersController extends Controller {
         }else{
             $participation = new Participation(['race_id'=> $request->input('distance'),'year' => Carbon::now()->year,'user_id' => $user->id,
                 'raceNumber' =>$user->id, 'chipNumber' => 0,
-                "time"=>'','paid' => 0,
+                "time"=>'', "averageSpeed" => null, 'paid' => 0,
                 'wiredTransfer' => 0, 'signedUpOnline' => 0]);
             $user->participations()->save($participation);
         }
@@ -115,10 +115,23 @@ class UsersController extends Controller {
 
     public function filter(Request $request){
         if($request->ajax()) {
+            $sex = $request->input('sex');
             $queryString = $request->input('queryString');
             $column = $request->input('filteropt');
-            $users = User::where( $column, 'LIKE', '%'.$queryString.'%')->get();
-            if($users->isEmpty()){
+            $query = null;
+            if($sex){
+                $query = User::whereIn('isMale', $sex);
+            }
+            if($queryString){
+                if($query){
+                    $query = $query->where( $column, 'LIKE', '%'.$queryString.'%');
+                }else{
+                    $query = User::where( $column, 'LIKE', '%'.$queryString.'%');
+                }
+            }
+            if($query){
+                $users = $query->get();
+            }else{
                 $users = User::all();
             }
             return view('users.table', compact('users'));

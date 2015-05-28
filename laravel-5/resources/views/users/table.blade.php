@@ -1,4 +1,4 @@
-<table id="myTable" class="table table-striped table-bordered table-responsive tablesorter">
+<table id="myTable" class="table table-striped table-bordered tablesorter">
     <thead>
         <tr>
             <th>{{Lang::get('users.firstname')}}</th>

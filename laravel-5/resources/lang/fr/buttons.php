@@ -5,6 +5,7 @@ return [
     'deletebtn' => ' Supprimer',
     'savebtn' => ' Sauvegarder',
     'startbtn' => ' Démarre la course. ',
+    'stopbtn' => ' Arrêter la course',
     'cancelbtn' => ' Annuler',
     'showparticipationsbtn' => ' Participations',
     'resultsbtn' => ' Resultats',

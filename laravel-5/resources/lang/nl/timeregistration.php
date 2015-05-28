@@ -1,4 +1,5 @@
 <?php
 return [
-    'title' => 'Tijdregistratie'
+    'title' => 'Tijdregistratie',
+    'recentregistrations' => 'Meest recente registraties'
 ];
