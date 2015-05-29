@@ -46,9 +46,9 @@ class CsvController extends Controller {
                     if(!$participation){
                         $participation = new Participation(['race_id' => $race->id, 'year' => $row->get('jaar'), 'user_id' => $user->id,
                             'raceNumber' => $row->get('rugnummer'), 'chipNumber' => $row->get('chipnummer'),
-                            'time' => $row->get('tijd'), 'paid' => $row->get('betTerPlaatse')=='TRUE'?1:0,
-                            'wiredTransfer' => $row->get('gestort')=='TRUE'?1:0,
-                            'signedUpOnline' => $row->get('electronisch')=='TRUE'?1:0]);
+                            'time' => $row->get('tijd'), 'paid' => $row->get('betterplaatse')=='TRUE'?1:0,
+                            'wiredtransfer' => $row->get('gestort')=='TRUE'?1:0,
+                            'signeduponline' => $row->get('electronisch')=='TRUE'?1:0]);
                         $participation->save();
                     }
                 });

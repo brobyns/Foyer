@@ -42,6 +42,22 @@
             </li>
             <li class="list-group-item">
                 <div class="row">
+                    <div class="col-xs-2">
+                        {!! Form::label('agerange', Lang::get('users.age'), ['class' =>'control-label', 'style' => 'float:left']) !!}
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div id="min" style="display: inline-block; margin:4px;"></div>
+                                <div id="max" style="display: inline-block;float: right; margin:4px"></div>
+                            </div>
+                        </div>
+                        <div id="slider"></div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
                     <div class="col-xs-6">
                         <div class="input-group">
                             {!! Form::text('filterinput', null, ['class' => 'form-control', 'id' => 'filterinput']) !!}

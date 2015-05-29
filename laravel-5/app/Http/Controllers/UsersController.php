@@ -116,6 +116,8 @@ class UsersController extends Controller {
     public function filter(Request $request){
         if($request->ajax()) {
             $sex = $request->input('sex');
+            $ageMin = $request->input('ageMin');
+            $ageMax = $request->input('ageMax');
             $queryString = $request->input('queryString');
             $column = $request->input('filteropt');
             $query = null;
@@ -133,6 +135,12 @@ class UsersController extends Controller {
                 $users = $query->get();
             }else{
                 $users = User::all();
+            }
+            if($ageMin > 3 || $ageMax < 100){
+                $users = $users->filter(function($user) use ($ageMin,$ageMax) {
+                    if (Carbon::createFromFormat('d/m/Y', $user->dateOfBirth)->between(
+                        Carbon::now()->addYears(-$ageMin), Carbon::now()->addYears(-$ageMax))) return true;
+                });
             }
             return view('users.table', compact('users'));
         }

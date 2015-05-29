@@ -16,7 +16,7 @@
                         <tr>
                             <td>{{ $user->firstName }}</td>
                             <td>{{ $user->name }}</td>
-                            <td>{{Carbon\Carbon::createFromFormat('d/m/Y',$user->dateOfBirth)->format('d/m/Y') . ' (' . Carbon\Carbon::createFromFormat('d/m/Y', $user->dateOfBirth)->diffInYears(Carbon\Carbon::now()) . ')'}}</td>
+                            <td>{{Carbon\Carbon::createFromFormat('d/m/Y',$user->dateOfBirth)->format('d/m/Y') . ' (' . Carbon\Carbon::createFromFormat('d/m/Y', $user->dateOfBirth)->age . ')'}}</td>
                             <td>{{ $user->emailAddress }}</td>
                             <td>{{ $user->address . ' ' . $user->zipCode . ' ' . $user->city}}</td>
                             <td>{{ $user->city}}</td>

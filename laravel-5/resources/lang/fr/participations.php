@@ -7,5 +7,7 @@ return[
     'racenumber' => 'Numéro de course',
     'chipnumber' => 'Numéro de puce',
     'paid' => 'Payé',
+    'yes' => 'Oui',
+    'no' => 'Non',
     'wiredtransfer' => 'Virement'
 ];

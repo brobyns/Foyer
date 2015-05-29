@@ -7,5 +7,7 @@ return[
     'racenumber' => 'Race nummer',
     'chipnumber' => 'Chip nummer',
     'paid' => 'Betaald',
+    'yes' => 'Ja',
+    'no' => 'Nee',
     'wiredtransfer' => 'Overschrijving'
 ];

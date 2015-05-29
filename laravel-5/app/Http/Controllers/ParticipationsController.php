@@ -91,6 +91,8 @@ class ParticipationsController extends Controller {
         $years = $request->input('years');
         $distances = $request->input('distances');
         $sex = $request->input('sex');
+        $ageMin = $request->input('ageMin');
+        $ageMax = $request->input('ageMax');
         $queryString = $request->input('queryString');
         $column = $request->input('filteropt');
         $query = null;
@@ -122,6 +124,17 @@ class ParticipationsController extends Controller {
                 if(!$userids->isEmpty()) {
                     $query = Participation::whereIn('user_id', $userids->toArray());
                 }
+            }
+        }
+        if($ageMin > 3 || $ageMax < 100){
+            $users = User::all()->filter(function($user) use ($ageMin,$ageMax) {
+                if (Carbon::createFromFormat('d/m/Y', $user->dateOfBirth)->between(
+                    Carbon::now()->addYears(-$ageMin), Carbon::now()->addYears(-$ageMax))) return true;
+                });
+            if($query) {
+                $query = $query->whereIn('user_id', $users->lists('id'));
+            }else{
+                $query = Participation::whereIn('user_id', $users->lists('id'));
             }
         }
         if($query){

@@ -21,6 +21,8 @@ $('.filter').change(function(){
     var sex = $('input[name=sex]:checked').map(function(){
         return this.value;
     }).get();
+    var ageMin = $('#min').html();
+    var ageMax = $('#max').html();
     var id = null;
     var pathname = $(location).attr('pathname');
     if(pathname.indexOf("race") > -1){
@@ -32,7 +34,8 @@ $('.filter').change(function(){
         $.ajax({
             url: 'participations/filter',
             type: "POST",
-            data: {'years':years,'distances':distances,'sex':sex,'id':id,'_token': $('input[name=_token]').val()},
+            data: {'years':years,'distances':distances,'sex':sex,'id':id,
+                'ageMin':ageMin,'ageMax':ageMax,'_token': $('input[name=_token]').val()},
             success: function(response){
                 $('#table').html(response);
                 $("#myTable").tablesorter({
@@ -53,6 +56,8 @@ function ajaxFilter(){
     var sex = $('input[name=sex]:checked').map(function(){
         return this.value;
     }).get();
+    var ageMin = $('#min').html();
+    var ageMax = $('#max').html();
     var id = null;
     var pathname = $(location).attr('pathname');
     if(pathname.indexOf("race") > -1){
@@ -61,7 +66,8 @@ function ajaxFilter(){
     $.ajax({
         url: "participations/filter",
         type: "POST",
-        data: {'filteropt':$('#filteropt').val(),'queryString':$('#filterinput').val(),'years':years,'distances':distances,'sex':sex,'id':id,'_token': $('input[name=_token]').val()},
+        data: {'filteropt':$('#filteropt').val(),'queryString':$('#filterinput').val(),'years':years,'distances':distances,
+            'sex':sex,'id':id,'ageMin':ageMin,'ageMax':ageMax,'_token': $('input[name=_token]').val()},
         success: function(response){
             $('#table').html(response);
             $("#myTable").tablesorter({

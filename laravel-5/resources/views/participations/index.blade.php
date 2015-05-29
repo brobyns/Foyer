@@ -1,6 +1,7 @@
 @extends('...app')
 @section('content')
     <div class="container-fluid">
+        <a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="col-md-offset-2">
@@ -25,5 +26,7 @@
 @section('scripts')
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     {!! Html::script('/javascript/jquery.tablesorter.js') !!}
+    {!! Html::script('/javascript/slider.js')!!}
     {!! Html::script('/javascript/filterAjax.js') !!}
+    {!! Html::script('/javascript/scrollToTop.js') !!}
 @endsection

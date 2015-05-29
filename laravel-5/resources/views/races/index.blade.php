@@ -26,6 +26,7 @@
                             <th>{{Lang::get('races.nameOfTheRace')}}</th>
                             <th>{{Lang::get('races.firstRaceNumber')}}</th>
                             <th>{{Lang::get('races.distance')}}</th>
+                            <th>{{Lang::get('races.startTime')}}</th>
                             <th>{{Lang::get('race_overview.numberparticipants')}}</th>
                             <td></td>
                         </tr>
@@ -36,6 +37,7 @@
                                 <td>{{ $race->nameOfTheRace }}</td>
                                 <td>{{ $race->firstRaceNumber }}</td>
                                 <td>{{ $race->distance }}</td>
+                                <td>{{ $race->startTime }}</td>
                                 <td>{{ count($race->participations->where('year', Carbon\Carbon::now()->year)) }}</td>
                                 <td>
                                     <a href="{{url('races/'.$race->id).'/edit'}}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-wrench"></span>{{Lang::get('buttons.editbtn')}}</a>
